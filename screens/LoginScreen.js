@@ -14,7 +14,8 @@ const LoginScreen = () => {
     const auth = getAuth(app);
 
     const navigation = useNavigation();
-
+    
+    //Create New User Account
     const handleSignUp  = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
@@ -28,6 +29,7 @@ const LoginScreen = () => {
         })
     }
     
+    //Log In Existing User Account
     const handleLogin = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
