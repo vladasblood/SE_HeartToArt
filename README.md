@@ -22,3 +22,5 @@ cd HeartToArt
 expo start # you can open iOS, Android, or web from here, or run them directly with the commands below.
 ```
 #
+
+vladibeer
