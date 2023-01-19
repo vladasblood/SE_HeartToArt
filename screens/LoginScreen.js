@@ -15,6 +15,16 @@ const LoginScreen = () => {
 
     const navigation = useNavigation();
     
+    //To Remove Back-option
+    useEffect(()=>{
+        const unsub = auth.onAuthStateChanged(user => {
+        if (user) {
+            navigation.replace('Home')
+        } 
+    })
+        return unsub
+    }, [])
+
     //Create New User Account
     const handleSignUp  = () => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -35,8 +45,8 @@ const LoginScreen = () => {
         .then(userCredentials => {
             console.log('Login successful');
             const user = userCredentials.user;
-            console.log(user);
-            navigation.navigate("Home")
+            //console.log(user);
+            //navigation.replace('Home')
         })
         .catch(error => {
             console.log(error)
@@ -51,7 +61,7 @@ const LoginScreen = () => {
     >
       <View style =  {styles.inputContainer}>
         <TextInput
-            placeholder ="Username"
+            placeholder ="Email"
             value = {email}
             onChangeText = {text => setEmail(text)}
             style = {styles.input}
@@ -68,23 +78,23 @@ const LoginScreen = () => {
       </View>
 
       <View style = {styles.buttonContainer}>
+      
+            {/* LOGIN */}
+            <TouchableOpacity
+                style={styles.button}
+                onPress={handleLogin}
+            >
+                <Text style={styles.buttonText}>Log in</Text>
+            </TouchableOpacity>
 
-        {/* LOGIN */}
-        <TouchableOpacity
-            style={styles.button}
-            onPress={handleLogin}
-        >
-            <Text style={styles.buttonText}>Log in</Text>
-        </TouchableOpacity>
-
-        {/* SIGN UP */}
-        <TouchableOpacity
-            style={[styles.button, styles.buttonOutline]}
-            onPress={handleSignUp}
-        >
-            <Text style={styles.buttonOutlineText}>Sign Up</Text>
-        </TouchableOpacity>
-
+            {/* SIGN UP */}
+            <TouchableOpacity
+                style={[styles.button, styles.buttonOutline]}
+                onPress={handleSignUp}
+            >
+                <Text style={styles.buttonOutlineText}>Sign Up</Text>  
+            </TouchableOpacity>
+       
       </View>
 
     </KeyboardAvoidingView>
