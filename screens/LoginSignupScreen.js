@@ -1,8 +1,10 @@
-import { Alert, ImageBackground, Image, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, ViewComponent } from 'react-native'
-import React, { useEffect, useState} from 'react'
+import { Image, KeyboardAvoidingView, Text, TouchableOpacity, View,} from 'react-native'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import logopic from "../assets/Heart.png" 
 import darklogopic from "../assets/DarkHeart.png" 
+import styles from '../styles/styles.js'
+
 
 
 const LoginSignupScreen = () => {
@@ -26,20 +28,13 @@ const LoginSignupScreen = () => {
 			>
 				{/* Heading Text and Logo */}
 				<View style = {styles.headingContainer}>
-			
-
-					<Image source={logopic} 
-						style={styles.LogoImage}
-					/>
-
+					<Image source={logopic} style={styles.LogoImage}/>
 					<Text style = {styles.heading}>Pour your hearts into art and see a world full of creative minds</Text>
 				</View> 
 
 
 				{/* Buttons and Subheading */}
 				<View style = {styles.buttonContainer}>
-
-		
 
 					{/* Subheading */}
 					<View> 
@@ -67,6 +62,7 @@ const LoginSignupScreen = () => {
 
 				</View>
 
+				{/* Slogan-like Footer */}
 				<View style = {styles.blueContainer}>
 
 					<Text style = {styles.blueContainerTexts}>Request an Art</Text>
@@ -84,94 +80,3 @@ const LoginSignupScreen = () => {
 }
 
 export default LoginSignupScreen
-
-const styles = StyleSheet.create ({
-
-	container: {
-		flex: 1,
-		// justifyContent: 'center',
-		alignItems: 'center',
-		paddingTop: '40%',
-		backgroundColor: '#eff0f1'
-	},
-	buttonContainer: {
-		width: '100%',
-		paddingBottom: '5%',
-		paddingTop: '5%',
-		backgroundColor: 'white'
-	},
-	button: {
-        backgroundColor: 'white',
-		borderWidth: 2,
-		borderColor: '#2a4267',
-        width: '90%',
-		height: 40,
-        paddingTop: '1.5%',
-		margin: '2.5%',
-		borderRadius: 40,
-		alignSelf: 'center'
-    },
-    buttonOutline: {
-        backgroundColor: '#2a4267',
-        borderWidth: 2,
-		paddingTop: '1.5%',
-    },
-    buttonText: {
-        color: '#2a4267',
-        fontWeight: '700',
-        fontSize: 16,
-		alignSelf: 'center',
-		margin: 0,
-    },
-    buttonOutlineText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-		alignSelf: 'center',
-		margin: 0,
-    },
-	blueContainer: {
-		backgroundColor: '#2a4267',
-		width: '100%',
-		height: '30%',
-		justifyContent: 'space-around',
-		padding: '4%',
-		paddingLeft: '5%',
-	},
-	subheading: {
-		color: '#242424',
-		textAlign: 'left',
-		textAlign: 'left',
-		paddingLeft: '5%',
-		fontWeight: '700',
-		marginBottom: '1%',
-	},
-	heading: {
-		color: '#242424',
-		textAlign: 'left',
-		fontWeight: '800',
-		fontSize: 17,
-		paddingRight: '20%',
-	},
-	LogoImage: {
-		maxWidth: '8%',
-		maxHeight: '18%',
-		marginBottom: '6%',
-	},
-	blueContainerTexts: {
-		color: 'white',
-		textAlign: 'left',
-		fontWeight: '700',
-		fontSize: 17,
-	},
-	blueContainerBackground: {
-		maxWidth: '30%',
-		maxHeight: '30%',
-		marginBottom: '104%',
-		position: 'absolute',
-		marginLeft: '45%',
-		marginTop: '0%',
-	}
-
-})
-
