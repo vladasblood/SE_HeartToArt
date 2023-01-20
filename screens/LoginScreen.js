@@ -1,154 +1,126 @@
-import { Alert, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { KeyboardAvoidingView, StyleSheet, TextInput, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../firebase';
 import { useNavigation } from '@react-navigation/native';
-
+import styles from '../styles/styles';
+import InlineTextButton from '../styles/InlineTextButton.js';
+import { auth, currentUser } from '../firebase';
 const LoginScreen = () => {
-    const [email, setEmail] = useState('')    
-    const [password, setPassword] = useState('')  
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  //Initializations  
+  // const app = initializeApp(firebaseConfig);
+  const navigation = useNavigation();
+  // const auth = getAuth(app);
+  
+  if (auth.currentUser) {
+    navigation.navigate("UserProfile");
+  }
 
-    const navigation = useNavigation();
-    
-    //To Remove Back-option
-    useEffect(()=>{
-        const unsub = auth.onAuthStateChanged(user => {
-        if (user) {
-            navigation.replace('Home')
-        } 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [validMessage, setValidMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [FirstName, setFirstName] = useState("");
+
+
+  const handleLogin = () => {
+    if (email !== "" && password !== ""){
+      signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+          navigation.navigate("UserProfile", {user: userCredential.user});
+        })
+        .catch(error => {
+          setErrorMessage(error.message)
+        })
+    } else {
+      setErrorMessage("Please Enter Correct Email and Password");
+    }
+  }
+
+  //Log In Existing User Account
+ 
+
+  //Sign Out
+  const handleSignOut = () => {
+    auth.signOut()
+    .then(() => {   
+        navigation.replace("Login")    
     })
-        return unsub
-    }, [])
-
-    //Create New User Account
-    const handleSignUp  = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredentials => {
-            const user = userCredentials.user;
-            console.log(user);
-        })
-        .catch(error => {
-            console.log(error)
-            Alert.alert(error.message);
-            
-        })
-    }
-    
-    //Log In Existing User Account
-    const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password)
-        .then(userCredentials => {
-            console.log('Login successful');
-            const user = userCredentials.user;
-            //console.log(user);
-            //navigation.replace('Home')
-        })
-        .catch(error => {
-            console.log(error)
-        })
-        
-    }
+    .catch(error => alert(error.message))
+  }  
 
   return (
-    <KeyboardAvoidingView
-        style = {styles.container}
-        behavior="padding"
-    >
-      <View style =  {styles.inputContainer}>
-        <TextInput
-            placeholder ="Email"
-            value = {email}
-            onChangeText = {text => setEmail(text)}
-            style = {styles.input}
-        />
-
-        <TextInput
-            placeholder = "Password"
-            value = {password}
-            onChangeText = {text => setPassword(text)} 
-            style = {styles.input}
-            secureTextEntry
-        />
-
-      </View>
-
-      <View style = {styles.buttonContainer}>
+    <KeyboardAvoidingView style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "null"}
+      keyboardVerticalOffset={60}
+      >
       
-            {/* LOGIN */}
-            <TouchableOpacity
-                style={styles.button}
-                onPress={handleLogin}
-            >
-                <Text style={styles.buttonText}>Log in</Text>
-            </TouchableOpacity>
+      <View style={styles.inputContainer}>
 
-            {/* SIGN UP */}
-            <TouchableOpacity
-                style={[styles.button, styles.buttonOutline]}
-                onPress={handleSignUp}
-            >
-                <Text style={styles.buttonOutlineText}>Sign Up</Text>  
-            </TouchableOpacity>
-       
+        <Text>{validMessage}</Text>
+        <Text style = {styles.errorText}>{errorMessage}</Text>
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={text => setEmail(text)}
+          style={styles.input}
+        />
+
+        <TextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={text => setPassword(text)}
+          style={styles.input}
+          secureTextEntry={true}
+        />
+
+        <View style={styles.rowContainer}>
+          <Text style={styles.input}>Create Account ?
+            <InlineTextButton text="Register"
+              onPress={() => navigation.navigate("Register")}
+            />
+          </Text>
+        </View>
+
+        <View style={styles.rowContainer}>
+          <Text style={styles.input}>Reset Password ?
+            <InlineTextButton text="Reset"
+              onPress={() => navigation.navigate("Reset")}
+            />
+          </Text>
+        </View>
+
+      </View>
+      
+      <View style={styles.buttonContainer}>
+
+        {/* LOG-IN */}
+        <TouchableOpacity
+          style={[styles.button, styles.buttonOutline]}
+          onPress={handleLogin}
+        >
+          <Text style={styles.buttonOutlineText}>Log In</Text>
+        </TouchableOpacity>
+
       </View>
 
-    </KeyboardAvoidingView>
+
+      {/* <View style = {styles.container}>
+        <Text>Email: {auth.currentUser?.email}</Text>
+        <TouchableOpacity
+        onPress = {handleSignOut}
+        style = {styles.button}
+        > 
+          <Text style={styles.buttonText}
+            onPress={() => navigation.navigate("Home")}>Sign out</Text>
+        </TouchableOpacity>
+ 
+      </View> */}
+
+  </KeyboardAvoidingView>
   )
-}
+};
 
 export default LoginScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    inputContainer: {
-        width: '80%',
-    },
-    input: {
-        backgroundColor: 'white',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 10,
-        marginTop: 5,
-
-    },
-    buttonContainer: {
-        width: '60%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 40,
-    },
-    button: {
-        backgroundColor: '#0782F9',
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-        alignItem: 'center',
-
-    },
-    buttonOutline: {
-        backgroundColor: 'white',
-        marginTop: 5,
-        borderColor: '#0782F9',
-        borderWidth: 2,
-
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-    buttonOutlineText: {
-        color: '#0782F9',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-})
