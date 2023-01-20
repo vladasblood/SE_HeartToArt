@@ -3,7 +3,7 @@ import React from 'react'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../firebase';
-import { useNavigation } from '@react-navigation/native';
+import { useLinkProps, useNavigation } from '@react-navigation/native';
 
 const RegisterScreen = () => {
 
@@ -21,15 +21,29 @@ const RegisterScreen = () => {
     .catch(error => alert(error.message))
   }  
 
+  const handleFeed = () => {
+    navigation.replace("Feed");
+  }
+
   return (
     <View style = {styles.container}>
+
       <Text>Email: {auth.currentUser?.email}</Text>
+
+      <TouchableOpacity 
+        style = {styles.button} 
+        onPress = {handleFeed}
+        >
+        <Text style={styles.buttonOutlineText}>Feed</Text>  
+      </TouchableOpacity>
+
       <TouchableOpacity
       onPress = {handleSignOut}
       style = {styles.button}
       > 
         <Text style={styles.buttonText}>Sign out</Text>
       </TouchableOpacity>
+
     </View>
   )
 }
