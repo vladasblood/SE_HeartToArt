@@ -14,12 +14,12 @@ const HomeScreen = () => {
 
   //Login
   const handleLogin = () => {
-    navigation.navigate("Login");
+    navigation.replace("Login");
   };
     
   //Register
   const handleRegister = () => {
-    navigation.navigate("Register");
+    navigation.replace("Register");
   };
   
   return (
