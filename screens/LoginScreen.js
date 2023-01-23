@@ -1,35 +1,38 @@
 import { KeyboardAvoidingView, StyleSheet, TextInput, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../firebase';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/styles';
 import InlineTextButton from '../styles/InlineTextButton.js';
-import { auth, currentUser } from '../firebase';
-const LoginScreen = () => {
+import { collection, addDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 
-  //Initializations  
-  // const app = initializeApp(firebaseConfig);
+
+export default function LoginScreen() {
+ 
   const navigation = useNavigation();
-  // const auth = getAuth(app);
-  
+ 
   if (auth.currentUser) {
     navigation.navigate("UserProfile");
-  }
+  } 
+  
 
   const [errorMessage, setErrorMessage] = useState("");
   const [validMessage, setValidMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [FirstName, setFirstName] = useState("");
+  
 
-
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (email !== "" && password !== ""){
       signInWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
-          navigation.navigate("UserProfile", {user: userCredential.user});
+          console.log("UID is", userUID);
+          //Updating UID to the logged in user  
+          navigation.navigate("UserProfile", {user: userCredential.user.uid});
         })
         .catch(error => {
           setErrorMessage(error.message)
@@ -38,9 +41,6 @@ const LoginScreen = () => {
       setErrorMessage("Please Enter Correct Email and Password");
     }
   }
-
-  //Log In Existing User Account
- 
 
   //Sign Out
   const handleSignOut = () => {
@@ -123,4 +123,3 @@ const LoginScreen = () => {
   )
 };
 
-export default LoginScreen
