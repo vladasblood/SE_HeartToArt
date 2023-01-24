@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import logopic from "../assets/Heart.png" 
 import darklogopic from "../assets/DarkHeart.png" 
-import styles from '../styles/styles.js'
+import styles from '../styles/Home-Styles.js'
 
 
 
@@ -14,11 +14,11 @@ const LoginSignupScreen = () => {
 
 		//Go to Login or Signup
 		const handleLogin = () => {
-				navigation.replace("Login")
+				navigation.navigate("Login")
 		}
 
 		const handleSignup = () => {
-				navigation.replace("Signup")
+				navigation.navigate("Signup")
 		}
 
 		return (
@@ -55,7 +55,11 @@ const LoginSignupScreen = () => {
 					style = {styles.button}
 					onPress = {handleLogin}
 					>
-					
+
+					{/* <Button title = "login" 
+						style={styles.button}
+							onPress={()=>navigation.navigate('Register')}/>
+					 */}
 					<Text style = {styles.buttonText}>Log in</Text>
 
 					</TouchableOpacity>

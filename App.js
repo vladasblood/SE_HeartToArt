@@ -1,14 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import HomeScreen from './screens/HomeScreen';
-import LoginSignupScreen from './screens/LoginSignupScreen';
-
-
+import Login from './screens/Login';
+import Home from './screens/Home';
+import Signup from './screens/Signup';
+import ChatScreen from './screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,10 +13,10 @@ export default function App() {
   return (
     <NavigationContainer>
 		<Stack.Navigator>
-			<Stack.Screen options ={ {headerShown: false} } name="LoginSignup" component={LoginSignupScreen} />
-			<Stack.Screen options ={ {headerShown: false} } name="Login" component={LoginScreen} />
-			{/* <Stack.Screen options ={ {headerShown: false} } name="Register" component={RegisterScreen} />
-			<Stack.Screen name="Home" component={HomeScreen} /> */} 
+			<Stack.Screen options ={ {headerShown: false, } } name="Home" component={Home} />
+			<Stack.Screen options ={ {headerShown: false} } name="Login" component={Login} />
+			<Stack.Screen options ={ {headerShown: false} } name="Signup" component={Signup} />
+			<Stack.Screen options ={ {headerShown: false} } name="Chat" component={ChatScreen} />
 		</Stack.Navigator>
     </NavigationContainer>
 

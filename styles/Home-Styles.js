@@ -2,71 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
-
-    //=======================<Styling Duplicates>====================
-
-    //Remove if unused
-
-    // container: {
-    //     flex: 1,
-    //     backgroundColor: '#fff',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     padding: 16
-    // },
-    // rowContainer: {
-    //     flexDirection: 'row',
-    //     alignItem: 'center', 
-    //     justifyContent: 'center',
-    //     alignSelf: "stretch",
-    //     marginVertical: 4,
-    // },
-    // errorText: {
-    //     color: "#ff0000",
-    // },
-    // buttonContainer: {
-    //     width: '60%',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     marginTop: 40,
-    // },
-    // button: {
-    //     backgroundColor: '#0782F9',
-    //     width: '100%',
-    //     padding: 15,
-    //     borderRadius: 10,
-    //     alignItem: 'center',
-    // },
-    // buttonOutline: {
-    //     backgroundColor: 'white',
-    //     marginTop: 5,
-    //     borderColor: '#0782F9',
-    //     borderWidth: 2,
-    // },
-    // buttonText: {
-    //     color: 'white',
-    //     fontWeight: '700',
-    //     fontSize: 16,
-    // },
-    // buttonOutlineText: {
-    //     color: '#0782F9',
-    //     fontWeight: '700',
-    //     fontSize: 16,
-
-
-//     <KeyboardAvoidingView
-//         behavior="position"
-//         style={{
-          
-//         }}
-//       >
-// ....
-// </KeyboardAvoidingView>
-
-    // },
-
-    //======================<LoginScreen Styles>=====================
-
     loginContainer: {
         flex: 1,
 		alignItems: 'center',
@@ -76,7 +11,7 @@ export default StyleSheet.create({
     input: {
         backgroundColor: '#EEEEEE',
         paddingVertical: '1%',
-        borderRadius: 4,
+        borderRadius: 4, 
         margin: '4%',
         marginHorizontal: 0,
         width: '70%',
@@ -142,7 +77,6 @@ export default StyleSheet.create({
 
     container: {
 		flex: 1,
-		// justifyContent: 'center',
 		alignItems: 'center',
 		paddingTop: '40%',
 		backgroundColor: '#eff0f1'

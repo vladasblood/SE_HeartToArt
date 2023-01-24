@@ -5,8 +5,8 @@ import { initializeApp } from 'firebase/app'
 import { firebaseConfig } from '../firebase'
 import { useNavigation } from '@react-navigation/native'
 import logopic from "../assets/Heart.png" 
-import styles from '../styles/styles.js'
-
+import styles from '../styles/Login+Signup-Styles.js'
+import { Ionicons } from '@expo/vector-icons';
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')    
@@ -21,7 +21,7 @@ const LoginScreen = () => {
     useEffect(()=>{
         const unsub = auth.onAuthStateChanged(user => {
         if (user) {
-            navigation.replace('Home')
+            navigation.replace('ChatScreen')
         } 
     })
         return unsub
@@ -60,43 +60,57 @@ const LoginScreen = () => {
     <KeyboardAvoidingView
         style = {styles.loginContainer} behavior="height" keyboardVerticalOffset={0}>
 
+        <TouchableOpacity style = {styles.backButtonContainer} onPress = {navigation.goBack}>
+            <Ionicons 
+            name="arrow-back-sharp" 
+            size={27} 
+            color="#2a4267"
+            />  
+        </TouchableOpacity>
+
         {/* Heading Text and Logo */}
         <View style = {styles.loginHeadingContainer}>
 
             <Image source={logopic} style={styles.loginLogoImage}/>
-
             <Text style = {styles.heading}>Pour your hearts into art and see a world full of creative minds</Text>
         </View> 
         
-
-
+        {/* Inside Blue Container */}
         <View style =  {styles.loginComponentContainer}>
 
-        <Text style = {styles.signUpText}>Login</Text>
+            <Text style = {styles.loginText}>Sign up</Text>
 
-        
-        <TextInput
-            placeholder ="Email"
-            value = {email}
-            onChangeText = {text => setEmail(text)}
-            style = {styles.input}
-        />
+            {/* Username Label */}
+            <Text style = {styles.labels}>Username</Text>
+            
+            <TextInput
+                placeholder ="Enter Username"
+                value = {email}
+                onChangeText = {text => setEmail(text)}
+                style = {styles.input}
+            />
 
-        <TextInput
-            placeholder = "Password"
-            value = {password}
-            onChangeText = {text => setPassword(text)} 
-            style = {styles.input}
-            secureTextEntry
-        />
+            {/* Password Label */}
+            <Text style = {styles.labels}>Password</Text> 
 
-            {/* LOGIN */}
-            <TouchableOpacity
-                style={styles.loginButton}
-                onPress={handleLogin}
-            >
-                <Text style={styles.loginButtonText}>Login</Text>
-            </TouchableOpacity>
+            <TextInput
+                placeholder = "Enter Password"
+                value = {password}
+                onChangeText = {text => setPassword(text)} 
+                style = {styles.input}
+                secureTextEntry
+            />
+
+            {/* Forgot Password? */}
+            <Text style = {styles.forgotPassText}>Forgot Password?</Text> 
+
+                {/* LOGIN */}
+                <TouchableOpacity
+                    style={styles.loginButton}
+                    onPress={handleLogin}
+                >
+                    <Text style={styles.loginButtonText}>Login</Text>
+                </TouchableOpacity>
 
         </View>
 
