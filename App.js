@@ -15,6 +15,7 @@ import FeedScreen from './screens/FeedScreen';
 import AcceptScreen from './screens/AcceptScreen';
 import InboxScreen from './screens/InboxScreen';
 import ClientHomeScreen from './screens/ClientHomeScreen';
+import ManageAccountScreen from './screens/ManageAccountScreen';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -27,29 +28,29 @@ export default function App() {
 
       <Stack.Navigator>
         <Stack.Screen 
-          options={{ headerShown: false }} 
-          name="Home" 
-          component={HomeScreen} />
+            options={{ headerShown: false }} 
+            name="Home" 
+            component={HomeScreen} />
 
         <Stack.Screen 
-          options ={ {headerShown: false} } 
-          name="Login" 
-          component={LoginScreen} />
+            options ={ {headerShown: false} } 
+            name="Login" 
+            component={LoginScreen} />
 
         <Stack.Screen 
-          options ={ {headerShown: false} } 
-          name="Register" 
-          component={RegisterScreen} />
+            options ={ {headerShown: false} } 
+            name="Register" 
+            component={RegisterScreen} />
 
          <Stack.Screen 
-          options ={ {headerShown: false} } 
-          name="Feed" 
-          component={FeedScreen} />
+            options ={ {headerShown: false} } 
+            name="Feed" 
+            component={FeedScreen} />
 
         <Stack.Screen 
-          options={{ headerShown: false }} 
-          name="Reset" 
-          component={ResetPassword} />
+            options={{ headerShown: false }} 
+            name="Reset" 
+            component={ResetPassword} />
 
         {/*
         <Stack.Screen
@@ -58,10 +59,16 @@ export default function App() {
           component={UserProfileScreen} />
         */}
 
+        <Stack.Screen
+            options={{ headerShown: false }} 
+            name = 'Accept' 
+            component = {AcceptScreen} 
+        />
+
         <Stack.Screen 
-          options={{ headerShown: false }}
-          name = "NavigationBar"
-          component={NaviBar} />
+            options={{ headerShown: false }}
+            name = "NavigationBar"
+            component={NaviBar} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -74,16 +81,15 @@ const Tab = createBottomTabNavigator();
 function NaviBar() {
   return(
     <NavigationContainer independent = {true}>
-      <Tab.Navigator 
-      
-        screenOptions = {{ 
-          headerShown: false, 
-          tabBarStyle: {
-            backgroundColor: '#2A4267',
-            height: 50,
-          },
-          tabBarShowLabel: false,
-          tabBarHideOnKeyboard: true,
+        <Tab.Navigator 
+            screenOptions = {{ 
+                headerShown: false, 
+                tabBarStyle: {
+                backgroundColor: '#2A4267',
+                height: 50,
+            },
+            tabBarShowLabel: false,
+            tabBarHideOnKeyboard: true,
         }}
       >
 
@@ -95,22 +101,22 @@ function NaviBar() {
               marginTop: 1,
             },
             tabBarIcon: () => (<MaterialCommunityIcons 
-              name='home-outline' 
+              name='home' 
               color={'white'} 
-              size={31} />
+              size={32} />
             )
           }}
         />
 
         <Tab.Screen
-          name = 'ClientHome' 
+          name = 'ClientHome'
           component = {ClientHomeScreen} 
           options = {{
             tabBarItemStyle: {
               marginTop: 1,
             },
             tabBarIcon: () => (<MaterialCommunityIcons 
-              name='home-outline' 
+              name='home' 
               color={'red'} 
               size={32} />
             )
@@ -118,8 +124,8 @@ function NaviBar() {
         />
 
         <Tab.Screen
-          name = 'Accept' 
-          component = {AcceptScreen} 
+          name = 'ManageAccount' 
+          component = {ManageAccountScreen} 
           options = {{
             tabBarButton: () => null
           }}
@@ -147,9 +153,9 @@ function NaviBar() {
               marginTop: 2,
             },
             tabBarIcon: () => (<MaterialCommunityIcons 
-              name = 'android-messages' 
+              name = 'message-text-outline' 
               color = 'white' 
-              size = {28} 
+              size = {32}
             />)
           }}
         />

@@ -11,4 +11,4 @@ const UserFeedScreen = () => {
   );
 }
 
-export default FeedScreen;
+export default UserFeedScreen;
