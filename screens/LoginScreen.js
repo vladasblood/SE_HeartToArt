@@ -14,9 +14,12 @@ export default function LoginScreen() {
  
   const navigation = useNavigation();
  
+  // if artist then home screen is feed
   if (auth.currentUser) {
-    navigation.navigate("UserProfile");
+    navigation.navigate('NavigationBar', { screen: 'Feed' });
   } 
+
+  // if client then home screen is search
   
 
   const [errorMessage, setErrorMessage] = useState("");

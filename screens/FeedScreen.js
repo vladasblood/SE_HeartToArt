@@ -1,16 +1,12 @@
 import { Text, View, Image, Button, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { styles } from '../styles/feedStyle.js';
 
-const Stack = createNativeStackNavigator();
-
 const FeedScreen = () => {
   const navigation = useNavigation();
-  navigation.navigate('Feed');
-
+  
   const acceptRequest = () => {
     navigation.navigate('Accept');
   }
@@ -22,13 +18,9 @@ const FeedScreen = () => {
       </View>
       
       <ScrollView> 
-        <View style = {styles.upBar}> 
-          
-        </View>
-
         <View style = {styles.requestContainer}>
           <View style = {styles.photoContainer}>
-            <Image style = {styles.profilePhoto} source={require('./icons/default-icon.png')} />
+            <Image style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
           </View>
 
           <View style = {styles.requests}>
@@ -55,7 +47,7 @@ const FeedScreen = () => {
 
         <View style = {styles.requestContainer}>
           <View style = {styles.photoContainer}>
-              <Image style = {styles.profilePhoto} source={require('./icons/default-icon.png')} />
+              <Image style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
           </View>
 
           <View style = {styles.requests}>
@@ -82,7 +74,7 @@ const FeedScreen = () => {
 
         <View style = {styles.requestContainer}>
           <View style = {styles.photoContainer}>
-              <Image style = {styles.profilePhoto} source={require('./icons/default-icon.png')} />
+              <Image style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
           </View>
 
           <View style = {styles.requests}>
@@ -109,7 +101,7 @@ const FeedScreen = () => {
 
         <View style = {styles.requestContainer}>
           <View style = {styles.photoContainer}>
-              <Image style = {styles.profilePhoto} source={require('./icons/default-icon.png')} />
+              <Image style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
           </View>
 
           <View style = {styles.requests}>
@@ -139,13 +131,8 @@ const FeedScreen = () => {
         </View>
       </ScrollView>
 
-      <View style = {styles.naviBar}> 
-
-      </View>
     </View>
   );
 }
 
 export default FeedScreen;
-
-// hatdog@xd.com hatdog123

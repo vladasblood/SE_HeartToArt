@@ -1,18 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import HomeScreen from './screens/HomeScreen';
 import ResetPassword from './screens/ResetPassword';
 import UserProfileScreen from './screens/UserProfileScreen';
-
-
-import styles from './styles/styles';
+// import NotificationScreen from './screens/NotificationScreen';
 import FeedScreen from './screens/FeedScreen';
 import AcceptScreen from './screens/AcceptScreen';
+import InboxScreen from './screens/InboxScreen';
+import ClientHomeScreen from './screens/ClientHomeScreen';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,29 +41,143 @@ export default function App() {
           name="Register" 
           component={RegisterScreen} />
 
-        <Stack.Screen 
+         <Stack.Screen 
           options ={ {headerShown: false} } 
           name="Feed" 
           component={FeedScreen} />
 
         <Stack.Screen 
-          options ={ {headerShown: false} } 
-          name="Accept" 
-          component={AcceptScreen} />
-
-        <Stack.Screen 
           options={{ headerShown: false }} 
           name="Reset" 
           component={ResetPassword} />
-        
+
+        {/*
         <Stack.Screen
           options={{ headerShown: false }}
           name="UserProfile"
           component={UserProfileScreen} />
+        */}
+
+        <Stack.Screen 
+          options={{ headerShown: false }}
+          name = "NavigationBar"
+          component={NaviBar} />
 
       </Stack.Navigator>
-
     </NavigationContainer>
+
   );
 }
+
+const Tab = createBottomTabNavigator();
+
+function NaviBar() {
+  return(
+    <NavigationContainer independent = {true}>
+      <Tab.Navigator 
+      
+        screenOptions = {{ 
+          headerShown: false, 
+          tabBarStyle: {
+            backgroundColor: '#2A4267',
+            height: 50,
+          },
+          tabBarShowLabel: false,
+          tabBarHideOnKeyboard: true,
+        }}
+      >
+
+        <Tab.Screen
+          name = 'Feed' 
+          component = {FeedScreen} 
+          options = {{
+            tabBarItemStyle: {
+              marginTop: 1,
+            },
+            tabBarIcon: () => (<MaterialCommunityIcons 
+              name='home-outline' 
+              color={'white'} 
+              size={31} />
+            )
+          }}
+        />
+
+        <Tab.Screen
+          name = 'ClientHome' 
+          component = {ClientHomeScreen} 
+          options = {{
+            tabBarItemStyle: {
+              marginTop: 1,
+            },
+            tabBarIcon: () => (<MaterialCommunityIcons 
+              name='home-outline' 
+              color={'red'} 
+              size={32} />
+            )
+          }}
+        />
+
+        <Tab.Screen
+          name = 'Accept' 
+          component = {AcceptScreen} 
+          options = {{
+            tabBarButton: () => null
+          }}
+        />
+
+        {/*
+        <Tab.Screen
+          name ='Notifs' 
+          component = {NotificationScreen} 
+          options = {{
+            tabBarIcon: () => (<MaterialCommunityIcons 
+              name = 'bell' 
+              color = 'white' 
+              size = {26} 
+            />)
+          }}
+        />
+        */}
+
+        <Tab.Screen
+          name = 'Inbox' 
+          component = {InboxScreen} 
+          options = {{
+            tabBarItemStyle: {
+              marginTop: 2,
+            },
+            tabBarIcon: () => (<MaterialCommunityIcons 
+              name = 'android-messages' 
+              color = 'white' 
+              size = {28} 
+            />)
+          }}
+        />
+
+        <Tab.Screen
+          name = 'Profile' 
+          component = {UserProfileScreen} 
+          options = {{
+            tabBarItemStyle: {
+              marginTop: 2,
+            },
+            tabBarIcon: () => (<Image 
+                style = {styles.img}
+                source = {require('./assets/default-icon.png')}
+            />)
+          }}
+        />
+          
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+}
+
+const styles = StyleSheet.create({
+  img: {
+    maxHeight: 30,
+    maxWidth: 30,
+    borderRadius: 15,
+  }
+});
 

@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { styles } from '../styles/acceptStyle.js';
 
@@ -16,7 +17,6 @@ const Stack = createNativeStackNavigator();
 
 const AcceptScreen = () => {
   const navigation = useNavigation();
-  navigation.navigate('Accept');
   
   const date = new Date();
   const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -47,8 +47,11 @@ const AcceptScreen = () => {
 
       <View style = {styles.upBar}> 
         <TouchableOpacity onPress={backToFeed}>
-        <Image style = {styles.backButton}
-            source = {require('./icons/back-arrow.png')} />
+          <MaterialCommunityIcons 
+            name='arrow-left' 
+            color='white' 
+            size={30} 
+          />
         </TouchableOpacity>
       </View>
 
@@ -56,7 +59,7 @@ const AcceptScreen = () => {
         <View style = {styles.requestContainer}>
             <View style = {styles.photoContainer}>
               <Image style = {styles.profilePhoto} 
-                source = {require('./icons/default-icon.png')}
+                source = {require('../assets/default-icon.png')}
                 />
             </View>
 

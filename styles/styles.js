@@ -8,6 +8,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         padding: 16
     },
+    
     rowContainer: {
         flexDirection: 'row',
         alignItem: 'center', 
