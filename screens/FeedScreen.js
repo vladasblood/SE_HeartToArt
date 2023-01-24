@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { styles } from './styles/feedStyle.js';
+import { styles } from '../styles/feedStyle.js';
 
 const Stack = createNativeStackNavigator();
 
