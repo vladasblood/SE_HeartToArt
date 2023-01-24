@@ -59,13 +59,13 @@ const LoginScreen = () => {
 		<KeyboardAvoidingView
 			style = {styles.loginContainer} behavior="height" keyboardVerticalOffset={0}>
       
-      <TouchableOpacity style = {styles.backButtonContainer} onPress = {navigation.goBack}>
-        <Ionicons 
-          name="arrow-back-sharp" 
-          size={27} 
-          color="#2a4267"
-        />  
-      </TouchableOpacity>
+		<TouchableOpacity style = {styles.backButtonContainer} onPress = {navigation.goBack}>
+			<Ionicons 
+			name="arrow-back-sharp" 
+			size={27} 
+			color="#2a4267"
+			/>  
+		</TouchableOpacity>
 
 			{/* Heading Text and Logo */}
 			<View style = {styles.loginHeadingContainer}>
