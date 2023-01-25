@@ -1,121 +1,93 @@
+
+import React, { useState } from 'react'
 import { Image, Alert, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
-import { initializeApp } from 'firebase/app'
-import { firebaseConfig } from '../firebase'
-import { useNavigation } from '@react-navigation/native'
-import logopic from "../assets/Heart.png" 
-import styles from '../styles/Login+Signup-Styles.js'
 import { Ionicons } from '@expo/vector-icons';
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from "../config/firebase";
 
-const LoginScreen = () => {
-    const [email, setEmail] = useState('')    
-    const [password, setPassword] = useState('')  
+import logopic from "../assets/Heart.png" 
+import styles from '../styles/Login&Signup-Styles.js'
+const backImage = require("../assets/BlueBackground.jpg")
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+// Exporting Component Login Screen
+export default function Signup({navigation}) {
 
-    const navigation = useNavigation();
-    
-    //To Remove Back-option
-    useEffect(()=>{
-        const unsub = auth.onAuthStateChanged(user => {
-        if (user) {
-            navigation.replace('ChatScreen')
-        } 
-    })
-        return unsub
-    }, [])
+  //const navigation = useNavigation();
+	const [email, setEmail] = useState('')    
+	const [password, setPassword] = useState('') 
 
-    //Create New User Account
-    const handleSignUp  = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredentials => {
-            const user = userCredentials.user;
-            console.log(user);
-        })
-        .catch(error => {
-            console.log(error)
-            Alert.alert(error.message);
-            
-        })
-    }
-    
-    //Log In Existing User Account
-    const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password)
-        .then(userCredentials => {
-            console.log('Login successful');
-            const user = userCredentials.user;
-            // console.log(user);
-            // navigation.replace('Home')
-        })
-        .catch(error => {
-            console.log(error)
-        })
-        
-    }
+  // Authenticate User with Email and Password
+	const onHandleLSignUp = () => {
+		if (email !== "" && password !== "") {
+			createUserWithEmailAndPassword(auth, email, password)
+      .then(() => console.log("Sign Up Success"))
+      .catch((err) => Alert.alert("Sign Up error", err.message));
+		}
+	};
 
   return (
-    <KeyboardAvoidingView
-        style = {styles.loginContainer} behavior="height" keyboardVerticalOffset={0}>
+    <View style={styles.container}>
+      <Image source={backImage} style={styles.backImage} />
 
-        <TouchableOpacity style = {styles.backButtonContainer} onPress = {navigation.goBack}>
+      {/* White Background */}
+      <View style = {styles.whiteSheet} />
+        <KeyboardAvoidingView
+          style = {styles.loginContainer} 
+          behavior="height" 
+          keyboardVerticalOffset={0}>
+          
+          {/* Back Button */}
+          <TouchableOpacity 
+            style = {styles.backButtonContainer} 
+            onPress={() => navigation.replace('Home')}>
             <Ionicons 
-            name="arrow-back-sharp" 
-            size={27} 
-            color="#2a4267"
-            />  
-        </TouchableOpacity>
+              name="arrow-back-sharp" 
+              size={27} 
+              color="#ffffff"
+          />  
 
-        {/* Heading Text and Logo */}
-        <View style = {styles.loginHeadingContainer}>
+          </TouchableOpacity>
 
+          {/* Heading Text and Logo */}
+          <View style = {styles.headingContainer}>
             <Image source={logopic} style={styles.loginLogoImage}/>
-            <Text style = {styles.heading}>Pour your hearts into art and see a world full of creative minds</Text>
-        </View> 
-        
-        {/* Inside Blue Container */}
-        <View style =  {styles.loginComponentContainer}>
+            <Text style = {styles.heading}>Welcome to Heart to Art.</Text>
+          </View> 
+          
+          {/* Inside White Container*/}
+          <View style =  {styles.componentContainer}>
+            <Text style = {styles.title}>Sign Up</Text>
 
-            <Text style = {styles.loginText}>Sign up</Text>
-
-            {/* Username Label */}
-            <Text style = {styles.labels}>Username</Text>
-            
+            {/* Email Label */}
             <TextInput
-                placeholder ="Enter Username"
-                value = {email}
-                onChangeText = {text => setEmail(text)}
-                style = {styles.input}
+              placeholder ="Enter Email"
+              // autoCapitalize='none'
+              keyboardType='email-address'
+              textContentType='emailAddress'
+              // autoFocus={true}
+              value = {email}
+              style = {styles.inputSignUp}
+              onChangeText = {text => setEmail(text)}
             />
 
             {/* Password Label */}
-            <Text style = {styles.labels}>Password</Text> 
-
             <TextInput
-                placeholder = "Enter Password"
-                value = {password}
-                onChangeText = {text => setPassword(text)} 
-                style = {styles.input}
-                secureTextEntry
+              placeholder = "Enter Password"
+              value = {password}
+              style = {styles.inputSignUp}
+              secureTextEntry = {true}
+              onChangeText = {text => setPassword(text)} 
             />
 
-            {/* Forgot Password? */}
-            <Text style = {styles.forgotPassText}>Forgot Password?</Text> 
-
-                {/* LOGIN */}
-                <TouchableOpacity
-                    style={styles.loginButton}
-                    onPress={handleLogin}
-                >
-                    <Text style={styles.loginButtonText}>Login</Text>
-                </TouchableOpacity>
-
-        </View>
-
-    </KeyboardAvoidingView>
+            {/* Sign Up Button*/}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={onHandleLSignUp}
+            >
+              <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
+          </View> 
+        </KeyboardAvoidingView>
+    </View>
   )
 }
-
-export default LoginScreen
