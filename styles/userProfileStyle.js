@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     
     uppermostBar: {
-        height: 85,
+        height: 45,
         backgroundColor: '#2A4267',
         justifyContent: 'center',
         paddingTop: 35
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         paddingRight: 15,
     },
 
-    profilePhoto: {
+    profilePhotoStyle: {
         borderRadius: 45,
         height: 90,
         width: 90

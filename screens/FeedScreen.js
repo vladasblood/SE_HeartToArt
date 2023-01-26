@@ -13,11 +13,13 @@ const FeedScreen = () => {
 
   return (
     <View style = {styles.box}>
-      <View style = {styles.uppermostBar}> 
+        <View style = {styles.uppermostBar}> 
+              
+        </View>
+      <ScrollView> 
+      <View style = {styles.upBar}> 
               
       </View>
-      
-      <ScrollView> 
         <View style = {styles.requestContainer}>
           <View style = {styles.photoContainer}>
             <Image style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />

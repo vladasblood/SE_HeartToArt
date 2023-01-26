@@ -12,18 +12,12 @@ const styles = StyleSheet.create({
   },
 
   uppermostBar: {
-    height: 85,
+    height: 45,
     backgroundColor: '#2A4267',
   },
 
-  //upBar: {
-  //  width: '100%',
-  //  height: 40,
-  //  backgroundColor: '#2A4267',
-  //},
-
   requestContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row',   
     width: '100%',
     height: 220,
     backgroundColor: 'white',
@@ -53,19 +47,19 @@ const styles = StyleSheet.create({
 
   artStyle: {
     borderRadius: 20,
-    borderColor: '#606060',
-    borderWidth: 1.5,
-    backgroundColor: '#F9F9F9',
-    paddingVertical: 6,
-    paddingHorizontal: 15,
+    //borderColor: '#B8B8B8',
+    //borderWidth: 1,
+    backgroundColor: '#A6A6A6',
+    paddingVertical: 3,
+    paddingHorizontal: 10,
     alignSelf: 'flex-start',
     marginVertical: 10 ,
   },
 
   artStyleText: {
     fontWeight: '900',
-    color: '#444444',
-    fontSize: 12,
+    color: '#FFFFFF',
+    fontSize: 10.5,
   },
 
   clientName: {

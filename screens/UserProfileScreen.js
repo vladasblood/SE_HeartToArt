@@ -5,12 +5,16 @@ import { auth, db } from '../firebase';
 import { collection, getDocs, getDoc, updateDoc, query, setDoc, where, doc, waitForPendingWrites } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { sendEmailVerification } from 'firebase/auth';
+import { getStorage, ref, getDownloadURL } from "firebase/storage"
 import InlineTextButton from '../styles/InlineTextButton.js';
 
 export default function UserProfileScreen({ navigation }) {
 
     const [oldUser, setOldUser] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [image, setImage] = useState(false);
+    const profilePhoto = null;
+
 
     //LOG-OUT
     const logOut = () => {
@@ -32,8 +36,19 @@ export default function UserProfileScreen({ navigation }) {
     //Loading Data
     let user_id = auth.currentUser?.uid;
     console.log("Your user id is: ", user_id);
-
     
+
+    // GETTING IMAGE FROM FIREBASE STORAGE
+    const storage = getStorage();
+    const storageRef = ref(storage, `userImages/${user_id}_DP`);
+    getDownloadURL(storageRef)
+        .then((url) => {
+        setImage(url); 
+        })
+        .catch((e) => console.log('downloadURL of image error => ', e));
+    // GETTING IMAGE FROM FIREBASE STORAGE
+    
+
     // let readData = () => {
     //     const editProfile = (collection(db, 'users'));
     //     getDocs(editProfile)
@@ -67,7 +82,7 @@ export default function UserProfileScreen({ navigation }) {
                     email: doc.data().email,
                     FirstName: doc.data().FirstName,
                     LastName: doc.data().LastName,
-                    //Missing: -> Profile Picture
+                    PhotoURL: doc.data().PhotoURL,
                     id: doc.id
                 }))
                 setOldUser(das);
@@ -108,6 +123,7 @@ export default function UserProfileScreen({ navigation }) {
     // let showUserContent = () => {
 
     // };
+    
     const showContent = () => {
         return (
             <View style={styles.container}>
@@ -135,16 +151,14 @@ export default function UserProfileScreen({ navigation }) {
     return (
         <SafeAreaView style={[styles.box]}>
             <View style = {styles.uppermostBar}> 
-              <Text style = {styles.title}>
-                Your Profile
-              </Text>
+              
             </View>
             <ScrollView>
                 <View style={styles.userContainer}>
                     <View style={styles.userLeftContainer}>
                         <Image 
-                            style={styles.profilePhoto}
-                            source = {require('../assets/default-icon.png')} />
+                            style={styles.profilePhotoStyle}
+                            source = {{uri : image}} />
                     </View>
                     <View style={styles.userRightContainer}>
                         <View style={styles.rightTopContainer}>

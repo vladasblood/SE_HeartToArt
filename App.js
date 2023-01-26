@@ -59,12 +59,6 @@ export default function App() {
           component={UserProfileScreen} />
         */}
 
-        <Stack.Screen
-            options={{ headerShown: false }} 
-            name = 'Accept' 
-            component = {AcceptScreen} 
-        />
-
         <Stack.Screen 
             options={{ headerShown: false }}
             name = "NavigationBar"
@@ -126,9 +120,23 @@ function NaviBar() {
         <Tab.Screen
           name = 'ManageAccount' 
           component = {ManageAccountScreen} 
-          options = {{
-            tabBarButton: () => null
-          }}
+          options = {() => ({
+            tabBarStyle: {
+                display: 'none'
+            }, 
+            tabBarButton: () => null,
+          })}
+        />
+
+        <Tab.Screen
+          name = 'Accept' 
+          component = {AcceptScreen} 
+          options = {() => ({
+            tabBarStyle: {
+                display: 'none'
+            }, 
+            tabBarButton: () => null,
+          })}
         />
 
         {/*

@@ -11,157 +11,88 @@ const styles = StyleSheet.create({
     },
     
     uppermostBar: {
-        height: 85,
+        height: 40,
         backgroundColor: '#2A4267',
-        justifyContent: 'center',
-        paddingTop: 35
+      },
+    
+    upBar: {
+        width: '100%',
+        height: 45,
+        backgroundColor: '#2A4267',
+        flexDirection: 'row',
+        paddingHorizontal: 10,
+    },
+
+    backButton: {
+        flex: 0.2,
+    },
+
+    titleContainer: {
+        flex: 0.6,
     },
     
     title: {
         fontSize: 20,
         fontWeight: '800',
         color: 'white',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        paddingTop: 2.5,
     },
     
-    userContainer: {
-        flexDirection: 'row',
-        paddingVertical: 15,
-        paddingLeft: 5,
-        paddingRight: 15,
-        backgroundColor: 'white',
-        borderBottomColor: '#C1C1C1',
-        borderBottomWidth: 1,
-        maxWidth: 'auto',
-
+    container: {
+        paddingVertical: 20,
+        paddingHorizontal: 30,
+        backgroundColor: '#FFFFFF',
+        marginBottom: 10,
+        justifyContent: 'center',
     },
 
-    userLeftContainer: {
-        paddingTop: 10,
-        paddingLeft: 10,
-        paddingRight: 15,
+    imageBorder: {
+        borderRadius: 100,
+    },
+
+    iconContainer: {
+        backgroundColor: '#FFFFFF',
+        alignSelf: 'center',
+        top: 40,
+        borderRadius: 50,
+        padding: 7,
+        opacity: 0.9
+    },
+
+    photoIcon: {
+        alignSelf: 'center',
+    },
+
+    photoContainer: {
+        justifyContent: 'center',
     },
 
     profilePhoto: {
-        borderRadius: 45,
-        height: 90,
-        width: 90
+        borderRadius: 60,
+        height: 120,
+        width: 120,
+        alignSelf: 'center',
+        overflow: 'hidden',
     },
 
-    userRightContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        paddingBottom: 10,
-        paddingTop: 5,
-        paddingLeft: 0,
-        paddingRight: 5,
+    imageOpacity: {
+        opacity: 0.7,
     },
 
-    rightTopContainer: {
-        flexDirection: 'row',
-    },
-
-    artStyle: {
-        borderRadius: 20,
-        borderColor: '#606060',
-        borderWidth: 1,
-        backgroundColor: '#F0F0F0',
-        paddingVertical: 6,
-        paddingHorizontal: 15,
-        alignSelf: 'flex-start',
-        marginVertical: 15,
-    },
-
-    artStyleText: {
-        fontWeight: '900',
-        color: '#444444',
-        fontSize: 11,
-    },
-
-    nameAndStyleContainer: {
-        flexDirection: 'column',
-        
-    },
-
-    usernameText: {
-        fontWeight: '700',
-    },
-
-    manageContainer: {
-        right: 0,
-        position: 'absolute',
-    },
-
-    manageAcc: {
-        backgroundColor: '#3264AF',
-        borderRadius: 20,
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        marginVertical: 15,
-        alignContent: 'center',
-        justifyContent: 'center',
-        
-    },
-
-    manageText: {
+    smallTitle: {
         fontWeight: '700',
         fontSize: 13,
-        color: 'white',
     },
 
-    bioText: {
-        fontSize: 12,
-        textAlign: 'justify',
-    },
-
-    pricingsOuter: {
-        flexDirection: 'column',
-        borderColor: '#C1C1C1',
-        borderBottomWidth: 1,
-    },
-
-    pricingsContainer: {
-        backgroundColor: 'white',
-        paddingHorizontal: 15,
-        paddingVertical: 25,
-        flexDirection: 'row',
-        flex: 1,
-    },
-
-    pricingsLeftContainer: {
-        backgroundColor: 'white',
-        paddingVertical: 10,
-        justifyContent: 'center'
-    },
-
-    pricingsPhoto: {
-        height: 90,
-        width: 160,
-    },
-
-    pricingsRightContainer: {
-        backgroundColor: 'white',
-        paddingHorizontal: 20,
-        flex: 1,
-    },
-
-    pricings: {
-        fontSize: 14,
+    input: {
+        fontSize: 11,
         fontWeight: '500',
-        marginBottom: 10,
-    }, 
-
-    pricingsDesc: {
-        textAlign: 'justify',
-        fontSize: 12,
+        color: '#4f4f4f',
+        borderBottomWidth: 0.5,
     },
 
-    downBar: {
-      width: '100%',
-      height: 50,
-      
-    },
+
 })
 
 export { styles }
