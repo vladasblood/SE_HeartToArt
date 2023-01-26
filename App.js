@@ -74,7 +74,7 @@ const Tab = createBottomTabNavigator();
 
 function NaviBar() {
   return(
-    <NavigationContainer independent = {true}>
+   
         <Tab.Navigator 
             screenOptions = {{ 
                 headerShown: false, 
@@ -183,7 +183,7 @@ function NaviBar() {
         />
           
       </Tab.Navigator>
-    </NavigationContainer>
+  
   )
 }
 
