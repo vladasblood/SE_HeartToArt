@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig, createUserDocument } from '../firebase';
-import { TabRouter, useNavigation } from '@react-navigation/native';
+import { TabRouter, useLinkProps, useNavigation } from '@react-navigation/native';
 import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
 import styles from '../styles/styles.js';
 import InlineTextButton from '../styles/InlineTextButton.js';
@@ -20,6 +20,8 @@ export default function RegisterScreen()  {
     const [validMessage, setValidMessage] = useState("");
     const [error, setError] = useState("");
     const userUID = "";
+    const PhotoURL = "";
+    const Username = "";
     
     //Navigation
     const navigation = useNavigation();
@@ -55,10 +57,13 @@ export default function RegisterScreen()  {
                 const docRef = await setDoc(ref, { 
                     FirstName,
                     LastName,
+                    Username,
                     email,
+                    photoURL,
                     password,
                     confirmPassword,
-                    userUID
+                    userUID,
+                    PhotoURL
                 })
                 sendEmailVerification(auth.currentUser);
                 navigation.replace("Login");

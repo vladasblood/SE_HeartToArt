@@ -1,11 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Text, View, Image, Button, TouchableOpacity, ScrollView } from 'react-native';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-export default function UserFeedScreen()
-{
-    return (
-        <View>
-               
-        </View>
-    )
+const UserFeedScreen = () => {
+
+  return (
+    <View>
+
+    </View>
+  );
 }
+
+export default UserFeedScreen;
