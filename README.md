@@ -37,6 +37,11 @@ git checkout -b [new-branch-name]
 git fetch -all
 ```
 
+### Pull Branch from Remote Branch
+```
+https://www.atlassian.com/git/tutorials/syncing/git-pull
+```
+
 #### Push your sub-branch
 ```
 git push origin [new-branch-name]
