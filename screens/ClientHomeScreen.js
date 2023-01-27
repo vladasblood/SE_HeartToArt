@@ -45,7 +45,9 @@ const ClientHomeScreen = () => {
       
       <ScrollView> 
         <View style = {styles.reqContainer}>
-          <TouchableOpacity style = {styles.reqBox}>
+          <TouchableOpacity 
+            style = {styles.reqBox} 
+            onPress={createRequest}>
             <Text style = {styles.reqText}>Create New Request</Text>
           </TouchableOpacity>
         </View>

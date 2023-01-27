@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         // paddingVertical: 20,
         paddingHorizontal: 30,
         backgroundColor: '#FFFFFF',
+        paddingBottom: 10,
         marginBottom: 10,
         justifyContent: 'center',
     },
@@ -66,7 +67,6 @@ const styles = StyleSheet.create({
 
     photoContainer: {
         justifyContent: 'center',
-        
     },
 
     profilePhoto: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         width: 120,
         alignSelf: 'center',
         overflow: 'hidden',
-        marginVertical: 20,
+        marginVertical: 30,
     },
 
     imageOpacity: {
@@ -93,6 +93,14 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: '#4f4f4f',
         borderBottomWidth: 0.5,
+    },
+
+    inputUser: {
+        fontSize: 11,
+        fontWeight: '500',
+        color: '#4f4f4f',
+        borderBottomWidth: 0.5,
+        marginBottom: 20,
     },
 
     sideBySide: {
@@ -128,6 +136,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         width: '90%',
         borderWidth: 1,
+        borderRadius: 5,
         borderColor: '#adadad',
         backgroundColor: '#f6f6f6',
         alignContent: 'flex-start',
@@ -139,7 +148,8 @@ const styles = StyleSheet.create({
         height: 84.38,
         width: 150,
         alignSelf: 'center',
-        marginRight: '3%'
+        marginRight: '3%',
+        borderRadius: 5,
     },
     
     dropdownContainer: {

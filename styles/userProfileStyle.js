@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
 
     profilePhotoStyle: {
         borderRadius: 45,
-        height: 90,
-        width: 90
+        height: 85,
+        width: 85,
     },
 
     userRightContainer: {
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     pricingsPhoto: {
         height: 90,
         width: 160,
+        borderRadius: 5,
     },
 
     pricingsRightContainer: {

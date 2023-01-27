@@ -5,101 +5,149 @@ import {
   Button, 
   TouchableOpacity, 
   ScrollView, 
+  SafeAreaView,
+  TextInput,
   Modal } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import DropDownPicker from 'react-native-dropdown-picker';
 
-import { styles } from '../styles/acceptStyle.js';
+import { styles } from '../styles/createRequestStyle.js';
 
 const Stack = createNativeStackNavigator();
 
 const CreateRequestScreen = () => {
   const navigation = useNavigation();
-  
-  const date = new Date();
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const dateString = `, ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
-  const targetDate = days[date.getDay()];
-  
+
+  const [artOpen, setArtOpen] = useState(false);
+  const [artValue, setArtValue] = useState(null);
+  const [arts, setArts] = useState([
+      {label: 'Logo', value: 'logo'},
+      {label: 'Poster', value: 'poster'},
+      {label: 'Portrait', value: 'portrait'},
+      {label: 'Landscape', value: 'landscape'},
+  ]);
+
+  const [desc, setDesc] = useState(false);
+
+  const [date, setDate] = useState(new Date());
+  const [show, setShow] = useState(false);
+  const curr = new Date();
+  const currString = curr.toLocaleDateString();
   
   const confirmRequest = () => {
-    backToFeed();
-    // handle
-
+    // handle 
+    backToHome();
   }
 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
+  };
 
-  const backToFeed = () => {
+  const showDatepicker = () => {
+    setShow(true);
+  };
+
+  const backToHome = () => {
     navigation.navigate('ClientHome');
   }
 
   return (
-    <View style = {styles.box}>
-      <View style = {styles.uppermostBar}> 
-
-      </View>
-
-      <View style = {styles.upBar}> 
-        <TouchableOpacity onPress={backToFeed}>
-          <MaterialCommunityIcons 
-            name='arrow-left' 
-            color='white' 
-            size={30} 
-          />
-        </TouchableOpacity>
-      </View>
-
-      <ScrollView>
-        <View style = {styles.requestContainer}>
-            <View style = {styles.photoContainer}>
-              <Image style = {styles.profilePhoto} 
-                source = {require('../assets/default-icon.png')}
-                />
-            </View>
-
-            <View style = {styles.requests}>
-              <Text style = {styles.clientName}>Username</Text>
-
-              <View style = {styles.artStyle}>
-                <Text style = {styles.artStyleText}>Art Style</Text>
-              </View>
-
-              <Text style = {styles.reqDesc}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting 
-                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                It has survived not only five centuries, but also the leap into electronic typesetting, 
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset 
-                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
-                like Aldus PageMaker including versions of Lorem Ipsum.
-              </Text>
-
-              <View style = {styles.dateContainer}>
-                <Text style = {styles.targ}>Target Date: </Text>
-                <Text style = {styles.dateStyle}>{targetDate}{dateString}</Text>
-              </View>
-            </View>
-        </View>
-
-        <View>
-          <View style = {styles.acceptContainer} >
-            <Text style = {styles.acceptText}>
-              Are you sure you want to accept this request?
-            </Text>
-            <TouchableOpacity style = {styles.requestButton} onPress = {confirmAccept}>
-              <Text style = {styles.requestButtonText}>Confirm</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style = {styles.requestButton} onPress = {cancelAccept}>
-              <Text style = {styles.requestButtonText}>Cancel</Text>
-            </TouchableOpacity>
+      <SafeAreaView style={[styles.box]}>
+          <View style = {styles.uppermostBar}> 
+              
           </View>
-        </View>
 
-      </ScrollView>
-    </View>
-  );
+          <View style = {styles.upBar}> 
+
+              <TouchableOpacity 
+                  style={styles.backButton}
+                  onPress={backToHome}>
+
+                  <MaterialCommunityIcons 
+                      name='arrow-left' 
+                      color='white' 
+                      size={30} 
+                  />
+                  
+              </TouchableOpacity>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>Create New Request</Text>
+              </View>
+          </View>
+          
+          <ScrollView>
+              <View style={styles.container}>
+                  <Text style = {styles.smallTitle}>Template</Text>
+                  <DropDownPicker 
+                      open={artOpen}
+                      value={artValue}
+                      items={arts}
+                      setOpen={setArtOpen}
+                      setValue={setArtValue}
+                      setItems={setArts}
+                      listMode="SCROLLVIEW"
+                      textStyle={styles.dropdownText}
+                      containerStyle={styles.dropdownContainer}
+                  />
+                  <Text style = {styles.smallTitle}>Description</Text>
+                  <View>
+                    <TextInput
+                              multiline={true}
+                              numberOfLines={10}
+                              style={styles.descStyle}
+                              keyboardType="visible-password"
+                              onChangeText={setDesc}
+                              value={desc}
+                              placeholder="" />
+                  </View>
+                  <Text style = {styles.smallTitle}>Target Date</Text>
+                  <TouchableOpacity
+                      style={styles.dateContainer}
+                      onPress={showDatepicker}>
+                        <Text
+                          style={styles.dateText}>
+                            {currString}
+                        </Text>
+                    </TouchableOpacity>
+                    {show && (
+                      <DateTimePicker
+                        testID="datePicker"
+                        value={date}
+                        mode='date'
+                        onChange={onChange}
+                        minimumDate={new Date()}
+                      />
+                    )}
+                
+              </View>
+
+              <View>
+                  <View style = {styles.acceptContainer} >
+                    <Text style = {styles.acceptText}>
+                      Are you sure you want to create this request?
+                    </Text>
+                    <TouchableOpacity style = {styles.requestButton} onPress = {confirmRequest}>
+                      <Text style = {styles.requestButtonText}>Confirm</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+
+              
+          
+              <View style={styles.downBar}>
+                       
+              </View>
+              
+          </ScrollView>
+
+      </SafeAreaView>
+  )
 }
 
 export default CreateRequestScreen;

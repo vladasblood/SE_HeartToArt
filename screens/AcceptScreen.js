@@ -95,9 +95,6 @@ const AcceptScreen = () => {
             <TouchableOpacity style = {styles.requestButton} onPress = {confirmAccept}>
               <Text style = {styles.requestButtonText}>Confirm</Text>
             </TouchableOpacity>
-            <TouchableOpacity style = {styles.requestButton} onPress = {cancelAccept}>
-              <Text style = {styles.requestButtonText}>Cancel</Text>
-            </TouchableOpacity>
           </View>
         </View>
 

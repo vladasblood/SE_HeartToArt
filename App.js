@@ -16,6 +16,7 @@ import AcceptScreen from './screens/AcceptScreen';
 import InboxScreen from './screens/InboxScreen';
 import ClientHomeScreen from './screens/ClientHomeScreen';
 import ManageAccountScreen from './screens/ManageAccountScreen';
+import CreateRequestScreen from './screens/CreateRequestScreen';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -74,7 +75,7 @@ const Tab = createBottomTabNavigator();
 
 function NaviBar() {
   return(
-    <NavigationContainer independent = {true}>
+   
         <Tab.Navigator 
             screenOptions = {{ 
                 headerShown: false, 
@@ -139,6 +140,17 @@ function NaviBar() {
           })}
         />
 
+        <Tab.Screen
+          name = 'CreateRequest' 
+          component = {CreateRequestScreen} 
+          options = {() => ({
+            tabBarStyle: {
+                display: 'none'
+            }, 
+            tabBarButton: () => null,
+          })}
+        />
+
         {/*
         <Tab.Screen
           name ='Notifs' 
@@ -183,7 +195,7 @@ function NaviBar() {
         />
           
       </Tab.Navigator>
-    </NavigationContainer>
+  
   )
 }
 
