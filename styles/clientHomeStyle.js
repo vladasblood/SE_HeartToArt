@@ -6,14 +6,14 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F1f1f1',
     alignSelf: 'center',
     borderRadius: 9,
   },
 
   uppermostBar: {
-    height: 85,
-    backgroundColor: '#2A4267',
+    height: 45,
+    backgroundColor: '#0364cd',
   },
 
   outerSearch: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     width: 175,
     height: 50,
     backgroundColor: 'white',
-    backgroundColor: '#3264AF',
+    backgroundColor: '#053dc4',
     alignSelf: 'center',
     borderRadius: 50,
     justifyContent: 'center',

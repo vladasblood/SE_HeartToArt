@@ -36,7 +36,7 @@ const AcceptScreen = () => {
   }
 
   const backToFeed = () => {
-    navigation.navigate("Feed");
+    navigation.goBack();
   }
 
   return (

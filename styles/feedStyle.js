@@ -6,14 +6,14 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#f1f1f1',
     alignSelf: 'center',
     borderRadius: 9,
   },
 
   uppermostBar: {
     height: 45,
-    backgroundColor: '#2A4267',
+    backgroundColor: '#0364cd',
   },
 
   requestContainer: {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
 
   viewButtonText: {
-    color: '#3264AF',
+    color: '#053dc4',
     fontWeight: '900',
   },
 

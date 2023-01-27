@@ -1,47 +1,59 @@
 import { Text, View, Image, Button, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { styles } from '../styles/inboxStyle.js';
 
 const InboxScreen = () => {
   const navigation = useNavigation(); 
 
-  const acceptRequest = () => {
-    navigation.navigate('Accept');
+  const seeMessage = () => {
+    // navigation.navigate('Accept');
   }
 
   return (
     <View style = {styles.box}>
       <View style = {styles.uppermostBar}> 
-        <Text style = {styles.title}>Inbox</Text>
       </View>
       
       <ScrollView> 
-        <View style = {styles.upBar}> 
-          
-        </View>
-
-        <View style = {styles.requestContainer}>
+        <TouchableOpacity style={styles.requestContainer} onPress={seeMessage}>
           <View style = {styles.photoContainer}>
             <Image style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
           </View>
-
-          <View style = {styles.requests}>
-            <Text style = {styles.clientName}>Username</Text>
-
-            <View style = {styles.artStyle}>
-              <Text style = {styles.artStyleText}>Art Style</Text>
-            </View>
-
-            <Text style = {styles.reqDesc}>Inbox
-            </Text>
-
-            <TouchableOpacity style={styles.viewButton} onPress={acceptRequest}>
-                <Text style={styles.viewButtonText}>View</Text>
-            </TouchableOpacity>
+          <View style = {styles.messageContainer}>
+            <Text style = {styles.userName}>Username</Text>
+            
+            <Text style = {styles.messageStyle}>hatdoghatdoghatdoghatdoghatdoghatdoghatdoghatdog</Text>
+            
           </View>
-        </View>
+          <MaterialCommunityIcons 
+            name='chevron-right' 
+            color='#4f4f4f' 
+            size={30} 
+            style={{alignSelf: 'center'}}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.requestContainer} onPress={seeMessage}>
+          <View style = {styles.photoContainer}>
+            <Image 
+            style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
+          </View>
+          <View style = {styles.messageContainer}>
+            <Text style = {styles.userName}>Username</Text>
+            
+            <Text style = {styles.messageStyle}>hatdoghatdoghatdoghatdoghatdoghatdoghatdoghatdog</Text>
+            
+          </View>
+          <MaterialCommunityIcons 
+            name='chevron-right' 
+            color='#4f4f4f' 
+            size={30} 
+            style={{alignSelf: 'center'}}
+          />
+        </TouchableOpacity>
+        
 
       </ScrollView>
 

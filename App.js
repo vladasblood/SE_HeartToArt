@@ -79,7 +79,7 @@ function NaviBar() {
             screenOptions = {{ 
                 headerShown: false, 
                 tabBarStyle: {
-                backgroundColor: '#2A4267',
+                backgroundColor: '#0364cd',
                 height: 50,
             },
             tabBarShowLabel: false,

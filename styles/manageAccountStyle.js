@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
     
     uppermostBar: {
         height: 40,
-        backgroundColor: '#2A4267',
+        backgroundColor: '#0364cd',
       },
     
     upBar: {
         width: '100%',
         height: 45,
-        backgroundColor: '#2A4267',
+        backgroundColor: '#0364cd',
         flexDirection: 'row',
         paddingHorizontal: 10,
     },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     
     container: {
-        paddingVertical: 20,
+        // paddingVertical: 20,
         paddingHorizontal: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 
     photoContainer: {
         justifyContent: 'center',
+        
     },
 
     profilePhoto: {
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
         width: 120,
         alignSelf: 'center',
         overflow: 'hidden',
+        marginVertical: 20,
     },
 
     imageOpacity: {
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
     smallTitle: {
         fontWeight: '700',
         fontSize: 13,
+        paddingTop: 30,
     },
 
     input: {
@@ -92,6 +95,78 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5,
     },
 
+    sideBySide: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'stretch',
+        alignContent: 'center',
+        marginBottom: 15
+    }, 
+
+    pricings: {
+        flex: 1,
+        alignItems: 'stretch',        
+    },
+
+    pricesInput: {
+        fontSize: 11,
+        fontWeight: '500',
+        color: '#4f4f4f',
+        borderBottomWidth: 0.5,
+        marginBottom: 5,
+        marginLeft: 5,
+        width: '50%',
+        
+    },
+
+    pricesDesc: {
+        fontSize: 11,
+        fontWeight: '500',
+        color: '#4f4f4f',
+        // borderBottomWidth: 0.5,
+        marginBottom: 5,
+        marginLeft: 5,
+        width: '90%',
+        borderWidth: 1,
+        borderColor: '#adadad',
+        backgroundColor: '#f6f6f6',
+        alignContent: 'flex-start',
+        textAlignVertical: 'top',
+        padding: 10,
+    },
+
+    pricePhotos: {
+        height: 84.38,
+        width: 150,
+        alignSelf: 'center',
+        marginRight: '3%'
+    },
+    
+    dropdownContainer: {
+        marginTop: 10,
+        // height: 50,
+    },
+
+    dropdownText: {
+        fontSize: 13,
+    },
+
+    saveChangesStyle: {
+        paddingHorizontal: 5,
+        paddingVertical: 10,
+        backgroundColor: '#053dc4',
+        borderRadius: 5,
+        marginHorizontal: '5%',
+        marginTop: -10,
+        marginBottom: 10,
+    },
+
+    saveTextStyle: {
+        textAlignVertical: 'center',
+        alignSelf: 'center',
+        color: '#f1f1f1',
+        fontWeight: '900'
+    },
 
 })
 

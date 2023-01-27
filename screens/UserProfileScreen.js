@@ -15,7 +15,6 @@ export default function UserProfileScreen({ navigation }) {
     const [image, setImage] = useState(false);
     const profilePhoto = null;
 
-
     //LOG-OUT
     const logOut = () => {
         signOut(auth).then(() => {
@@ -36,7 +35,6 @@ export default function UserProfileScreen({ navigation }) {
     //Loading Data
     let user_id = auth.currentUser?.uid;
     console.log("Your user id is: ", user_id);
-    
 
     // GETTING IMAGE FROM FIREBASE STORAGE
     const storage = getStorage();
@@ -166,6 +164,9 @@ export default function UserProfileScreen({ navigation }) {
                                 <Text style={styles.usernameText}>
                                     Username
                                 </Text>
+                                <Text style={styles.emailText}>
+                                    Email
+                                </Text>
                                 <View style = {styles.artStyle}>
                                     <Text style = {styles.artStyleText}>
                                         Art Style
@@ -263,7 +264,11 @@ export default function UserProfileScreen({ navigation }) {
                         
                 </View>
                 
-                <Button title="Logout" onPress={logOut}></Button>
+                <TouchableOpacity onPress={logOut} style={styles.logOutStyle}>
+                    <Text style={styles.logOutTextStyle}>
+                        LOGOUT
+                    </Text>
+                </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     )

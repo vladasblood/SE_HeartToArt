@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     
     uppermostBar: {
         height: 45,
-        backgroundColor: '#2A4267',
+        backgroundColor: '#0364cd',
         justifyContent: 'center',
         paddingTop: 35
     },
@@ -63,19 +63,19 @@ const styles = StyleSheet.create({
 
     artStyle: {
         borderRadius: 20,
-        borderColor: '#606060',
-        borderWidth: 1,
-        backgroundColor: '#F0F0F0',
-        paddingVertical: 6,
-        paddingHorizontal: 15,
+        //borderColor: '#B8B8B8',
+        //borderWidth: 1,
+        backgroundColor: '#A6A6A6',
+        paddingVertical: 3,
+        paddingHorizontal: 10,
         alignSelf: 'flex-start',
-        marginVertical: 15,
+        marginVertical: 10 ,
     },
-
+    
     artStyleText: {
         fontWeight: '900',
-        color: '#444444',
-        fontSize: 11,
+        color: '#FFFFFF',
+        fontSize: 10.5,
     },
 
     nameAndStyleContainer: {
@@ -87,21 +87,24 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
 
+    emailText: {
+        fontSize: 11,
+    },
+
     manageContainer: {
         right: 0,
         position: 'absolute',
     },
 
     manageAcc: {
-        backgroundColor: '#3264AF',
-        borderRadius: 20,
+        backgroundColor: '#053dc4',
+        borderRadius: 5,
         alignItems: 'center',
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 7.5,
         marginVertical: 15,
         alignContent: 'center',
         justifyContent: 'center',
-        
     },
 
     manageText: {
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
     },
 
     bioText: {
-        fontSize: 12,
+        fontSize: 11,
         textAlign: 'justify',
     },
 
@@ -160,7 +163,24 @@ const styles = StyleSheet.create({
     downBar: {
       width: '100%',
       height: 50,
-      
+      backgroundColor: '#ffffff',
+      borderBottomWidth: 1,
+      borderBottomColor: '#C1C1C1'
+    },
+
+    logOutStyle: {
+        padding: 10,
+        justifyContent: 'center',
+        backgroundColor: '#232323',
+        marginHorizontal: '5%',
+        marginVertical: 5,
+        borderRadius: 5,
+    },
+
+    logOutTextStyle: {
+        alignSelf: 'center',
+        color: 'white',
+        fontWeight: '900'
     },
 })
 

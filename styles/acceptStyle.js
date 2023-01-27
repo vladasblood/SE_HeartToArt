@@ -6,20 +6,20 @@ const styles = StyleSheet.create({
     fontFamily: '',
     width: '100%',
     height: '100%',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#f1f1f1',
     alignSelf: 'center',
     borderRadius: 9
   },
 
   uppermostBar: {
     height: 45,
-    backgroundColor: '#2A4267',
+    backgroundColor: '#0364cd',
   },
 
   upBar: {
     width: '100%',
     height: 40,
-    backgroundColor: '#2A4267',
+    backgroundColor: '#0364cd',
     paddingHorizontal: 10,
   },
 
@@ -53,25 +53,23 @@ const styles = StyleSheet.create({
   },
 
   clientName: {
-    color: '#3C3C3C',
+    color: '#4F4F4F',
     fontWeight: '900',
   },
 
   artStyle: {
     borderRadius: 20,
-    borderColor: '#606060',
-    borderWidth: 1.5,
-    backgroundColor: '#F9F9F9',
-    paddingVertical: 6,
-    paddingHorizontal: 15,
+    backgroundColor: '#A6A6A6',
+    paddingVertical: 3,
+    paddingHorizontal: 10,
     alignSelf: 'flex-start',
-    marginVertical: 10,
+    marginVertical: 10 ,
   },
 
   artStyleText: {
     fontWeight: '900',
-    color: '#444444',
-    fontSize: 12,
+    color: '#FFFFFF',
+    fontSize: 10.5,
   },
 
   reqDesc: {
@@ -110,11 +108,12 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '600',
     alignSelf: 'center',
+    color: '#4F4F4F',
   },
 
   requestButton: {
     alignSelf: 'center',
-    borderRadius: 30,
+    borderRadius: 10,
     paddingHorizontal: 50,
     paddingVertical: 14,
     marginTop: 15,

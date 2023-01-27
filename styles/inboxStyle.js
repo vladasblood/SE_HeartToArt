@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
   },
 
   uppermostBar: {
-    height: 85,
-    backgroundColor: '#2A4267',
+    height: 45,
+    backgroundColor: '#0364cd',
     justifyContent: 'center',
     paddingTop: 35
   },
@@ -26,19 +26,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
 
-  //upBar: {
-  //  width: '100%',
-  //  height: 40,
-  //  backgroundColor: '#2A4267',
-  //},
-
   requestContainer: {
     flexDirection: 'row',
     width: '100%',
-    height: 220,
+    height: 80,
     backgroundColor: 'white',
     borderBottomColor: '#C1C1C1',
-    paddingTop: 25,
+    paddingTop: 15,
     paddingHorizontal: 15,
     paddingBottom: 9,
     borderBottomWidth: 1,
@@ -55,61 +49,24 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
 
-  requests: {
+  messageContainer: {
     flex: 0.9,
     flexDirection: 'column',
-    paddingRight: 10,
+    paddingLeft: 12.5,
+    paddingTop: 5,
+    paddingRight: 20,
   },
 
-  artStyle: {
-    borderRadius: 20,
-    borderColor: '#606060',
-    borderWidth: 1.5,
-    backgroundColor: '#F9F9F9',
-    paddingVertical: 6,
-    paddingHorizontal: 15,
-    alignSelf: 'flex-start',
-    marginVertical: 10 ,
-  },
-
-  artStyleText: {
-    fontWeight: '900',
-    color: '#444444',
-    fontSize: 12,
-  },
-
-  clientName: {
-    color: '#3C3C3C',
+  userName: {
+    color: '#4f4f4f',
     fontWeight: '900',
   },
 
-  reqDesc: {
-    flex: 1,
+  messageStyle: {
     fontSize: 12,
     fontWeight: '400',
-  },
-
-  viewButton: {
-    borderRadius: 20,
-    borderColor: '#3264AF',
-    borderWidth: 2,
-    backgroundColor: 'white',
-    paddingVertical: 6,
-    paddingHorizontal: 30,
-    marginVertical: 10 ,
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-  },
-
-  viewButtonText: {
-    color: '#3264AF',
-    fontWeight: '900',
-  },
-
-  downBar: {
-    width: '100%',
-    height: 50,
-    
+    color: '#4f4f4f',
+    flex: 0.5,
   },
    
 });
