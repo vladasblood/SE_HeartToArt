@@ -109,20 +109,18 @@ const ManageAccountScreen = () => {
     const newPhoto = async () => {
 
         try {
-
             const bigData = doc(db, "users", auth.currentUser.uid);
             await updateDoc(bigData, {
                 PhotoURL: updatedImage,
                 Username: userName,
+                userUID: user_id,
             })
         } catch (e) {}
-      
 
         setUploading(false);
     }
 
     const changeBIO = async () => {
-
         const ref = doc(db, 'users', auth.currentUser.uid, 'bio', auth.currentUser.uid);
         const docRef = await setDoc(ref, {
             textBIO,
@@ -302,7 +300,9 @@ const ManageAccountScreen = () => {
                 </View>
 
                 <View>
-                    { ! uploading ? < ActivityIndicator size="large" color = "#000" /> :
+                    {/* Wala munang indicator, trying to figure out where to put boolean */}
+
+                    {/* { ! uploading ? < ActivityIndicator size="large" color = "#000" /> : */}
                         <View>
                             <TouchableOpacity 
                                 style={styles.saveChangesStyle}
@@ -313,7 +313,7 @@ const ManageAccountScreen = () => {
                             </TouchableOpacity>
                         </View>
                      
-                    }
+                    {/* } */}
                 </View>
             
                 <View style={styles.downBar}>

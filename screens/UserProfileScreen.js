@@ -55,15 +55,6 @@ export default function UserProfileScreen({ navigation }) {
     //         })
     // };
 
-    // let updateUID = async () => {
-    //     const userUID = auth.currentUser.uid;
-    //     const bigData = doc(db, "users", auth.currentUser.uid);
-
-    //     await updateDoc(bigData, {
-    //         userUID: userUID,
-    //         PhotoURL: image,
-    //     })
-    // };
 
     let readData = () => {
         const editProfile = query(collection(db, 'users'), where("email", "==", auth.currentUser.email));
@@ -82,7 +73,7 @@ export default function UserProfileScreen({ navigation }) {
                 // console.log(doc.id);
                 // console.log(auth.currentUser.uid);
                 das.map((elem) => {
-                    console.log(elem.id);
+                    console.log("Elem id", elem.id);
                     const subCollect = query(collection(db, `users/${elem.id}/bio`))
                     getDocs(subCollect)
                     .then(response =>{
@@ -94,7 +85,7 @@ export default function UserProfileScreen({ navigation }) {
                     }
                     )
                 })
-
+                
             })
             .catch(error => {
                 // console.log(error.message)

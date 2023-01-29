@@ -59,7 +59,6 @@ export default function RegisterScreen()  {
                     LastName,
                     Username,
                     email,
-                    photoURL,
                     password,
                     confirmPassword,
                     userUID,
