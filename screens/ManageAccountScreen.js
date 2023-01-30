@@ -21,6 +21,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage"
 import { auth, db } from '../firebase';
 import DropDownPicker from 'react-native-dropdown-picker';
 
+
 const ManageAccountScreen = () => {
     const [bio, onChangeBio] = React.useState('');
     const [price, onChangePrice] = React.useState('');
@@ -61,8 +62,6 @@ const ManageAccountScreen = () => {
       navigation.navigate('Profile');
     }
 
-    
-
     const changeProfilePicture = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -75,6 +74,7 @@ const ManageAccountScreen = () => {
             setImage(result.assets[0].uri);
             // uploadImage(result.assets[0].uri);
         }
+
     }
 
     const uploadImage = async () => {
@@ -89,10 +89,13 @@ const ManageAccountScreen = () => {
         await uploadBytes(storageRef, bytes);
         await readImage();
         //await newPhoto();
+        await setUploading(true);
+
     }
 
     const readImage = () => {
         //Read Image Data
+
         const storage = getStorage();
         const storageRef = ref(storage, `userImages/${user_id}_DP`);
         getDownloadURL(storageRef)
@@ -100,14 +103,21 @@ const ManageAccountScreen = () => {
                 return setUpdatedImage(url);
             })
             .catch((e) => console.log('downloadURL of image error => ', e));
+        
     }
 
     const newPhoto = async () => {
-        const bigData = doc(db, "users", auth.currentUser.uid);
-        await updateDoc(bigData, {
-            PhotoURL: updatedImage,
-            Username: userName,
-        })
+
+        try {
+            const bigData = doc(db, "users", auth.currentUser.uid);
+            await updateDoc(bigData, {
+                PhotoURL: updatedImage,
+                Username: userName,
+                userUID: user_id,
+            })
+        } catch (e) {}
+
+        setUploading(false);
     }
 
     const changeBIO = async () => {
@@ -117,11 +127,14 @@ const ManageAccountScreen = () => {
         })
     }
 
+
     const saveAllChanges = () => {
         //Upload First to Firebase Storage
         uploadImage();
         newPhoto();
-        changeBIO();    
+        changeBIO();
+        console.log('Uploaded Images');   
+        setUploading(false); 
     }
 
     return (
@@ -287,16 +300,20 @@ const ManageAccountScreen = () => {
                 </View>
 
                 <View>
-                    <TouchableOpacity 
-                        style={styles.saveChangesStyle}
-                        onPress={saveAllChanges}>
-                        <Text style={styles.saveTextStyle}>
-                            SAVE CHANGES
-                        </Text>
-                    </TouchableOpacity>
+                    {/* Wala munang indicator, trying to figure out where to put boolean */}
 
-                    
-
+                    {/* { ! uploading ? < ActivityIndicator size="large" color = "#000" /> : */}
+                        <View>
+                            <TouchableOpacity 
+                                style={styles.saveChangesStyle}
+                                onPress={saveAllChanges}>
+                                <Text style={styles.saveTextStyle}>
+                                    SAVE CHANGES
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                     
+                    {/* } */}
                 </View>
             
                 <View style={styles.downBar}>
