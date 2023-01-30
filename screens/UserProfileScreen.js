@@ -14,9 +14,9 @@ export default function UserProfileScreen({ navigation }) {
 
     const [userBIO, setUserBIO] = useState([]);
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [image, setImage] = useState(false);
-    const profilePhoto = null;
+    // const [isLoading, setIsLoading] = useState(true);
+    // const [image, setImage] = useState(false);
+    // const profilePhoto = null;
 
     //LOG-OUT
     const logOut = () => {
@@ -203,7 +203,7 @@ export default function UserProfileScreen({ navigation }) {
                                 </Text>
                                 <View style = {styles.artStyle}>
                                     <Text style = {styles.artStyleText}>
-                                        Art Style
+                                        Template
                                     </Text>
                                 </View>
                                 {/*

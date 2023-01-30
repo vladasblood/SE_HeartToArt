@@ -17,6 +17,7 @@ import InboxScreen from './screens/InboxScreen';
 import ClientHomeScreen from './screens/ClientHomeScreen';
 import ManageAccountScreen from './screens/ManageAccountScreen';
 import CreateRequestScreen from './screens/CreateRequestScreen';
+import TransactionDetailsScreen from './screens/TransactionDetailsScreen';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -52,13 +53,6 @@ export default function App() {
             options={{ headerShown: false }} 
             name="Reset" 
             component={ResetPassword} />
-
-        {/*
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="UserProfile"
-          component={UserProfileScreen} />
-        */}
 
         <Stack.Screen 
             options={{ headerShown: false }}
@@ -151,19 +145,16 @@ function NaviBar() {
           })}
         />
 
-        {/*
         <Tab.Screen
-          name ='Notifs' 
-          component = {NotificationScreen} 
-          options = {{
-            tabBarIcon: () => (<MaterialCommunityIcons 
-              name = 'bell' 
-              color = 'white' 
-              size = {26} 
-            />)
-          }}
+          name = 'Transaction' 
+          component = {TransactionDetailsScreen} 
+          options = {() => ({
+            tabBarStyle: {
+                display: 'none'
+            }, 
+            tabBarButton: () => null,
+          })}
         />
-        */}
 
         <Tab.Screen
           name = 'Inbox' 

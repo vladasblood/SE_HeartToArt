@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     
     userContainer: {
         flexDirection: 'row',
-        paddingVertical: 15,
+        paddingTop: 15,
+        paddingBottom: 20,
         paddingLeft: 5,
         paddingRight: 15,
         backgroundColor: 'white',

@@ -52,21 +52,65 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  reqText: {
+  newReqText: {
     fontSize: 12,
     fontWeight: '600',
     alignSelf: 'center',
     color: 'white'
   }, 
+
+  reqText: {
+    fontSize: 12,
+    alignSelf: 'center',
+    padding: 10,
+  }, 
   
   currentTitleText: {
     fontWeight: '700',
+    flexDirection: 'row',
+    flex: 0.5,
+    borderBottomWidth: 1,
+    paddingBottom: 20,
+    borderColor: '#C1C1C1',
   },
 
   searchIcon: {
     right: 0,
     position: 'absolute',
     marginHorizontal: 10,
+  },
+
+  currentReqBox: {
+    // borderTopWidth:1,
+    // marginTop: 20,
+    flexDirection: 'column',
+    borderBottomWidth: 1,
+    borderColor: '#C1C1C1'
+  },
+
+  reqClickable: {
+    flexDirection: 'row',
+  },
+
+  reqTextContainer: {
+    height: 65,
+    flex: 1,
+  },
+
+  artStyle: {
+    borderRadius: 20,
+    backgroundColor: '#A6A6A6',
+    paddingVertical: 3,
+    paddingHorizontal: 10,
+    alignSelf: 'flex-start',
+    marginVertical: 10 ,
+  },
+
+  artStyleText: {
+    fontWeight: '900',
+    color: '#FFFFFF',
+    fontSize: 10.5,
+    
   },
 
 

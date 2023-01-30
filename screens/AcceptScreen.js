@@ -67,7 +67,7 @@ const AcceptScreen = () => {
               <Text style = {styles.clientName}>Username</Text>
 
               <View style = {styles.artStyle}>
-                <Text style = {styles.artStyleText}>Art Style</Text>
+                <Text style = {styles.artStyleText}>Template</Text>
               </View>
 
               <Text style = {styles.reqDesc}>

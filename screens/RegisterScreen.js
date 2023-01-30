@@ -20,7 +20,7 @@ export default function RegisterScreen()  {
     const [validMessage, setValidMessage] = useState("");
     const [error, setError] = useState("");
     const userUID = "";
-    const PhotoURL = "";
+    const PhotoURL = "https://firebasestorage.googleapis.com/v0/b/hearttoart-a8546.appspot.com/o/userImages%2Fdefault-icon.png?alt=media&token=7e7d8ed0-6733-454c-b386-40dfc0a32370";
     const Username = "";
     
     //Navigation
@@ -59,7 +59,6 @@ export default function RegisterScreen()  {
                     LastName,
                     Username,
                     email,
-                    photoURL,
                     password,
                     confirmPassword,
                     userUID,
