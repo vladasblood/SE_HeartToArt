@@ -9,7 +9,7 @@ const InboxScreen = () => {
   const navigation = useNavigation(); 
 
   const seeMessage = () => {
-    // navigation.navigate('Accept');
+    navigation.navigate('Chat');
   }
 
   return (

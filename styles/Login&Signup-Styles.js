@@ -14,7 +14,7 @@ export default StyleSheet.create({
       marginTop: '2%',
       marginHorizontal: 0,
       marginBottom: '2%',
-      paddingLeft: '3%',
+      paddingHorizontal: 10,
       fontWeight: '500',
   },
   backImage: {
@@ -40,9 +40,10 @@ export default StyleSheet.create({
       opacity: 0.5,
   },
   componentContainer: {
-      width: '100%',
+      width: 250,
       backgroundColor: 'white',
       alignSelf: 'center',
+      paddingVertical: 10,
       flexGrow: 1,
   },
   loginLogoImage: {
@@ -81,7 +82,7 @@ export default StyleSheet.create({
       fontWeight: '800',
       color: 'white',
       paddingVertical: '2%',
-      paddingHorizontal: '30%',
+      paddingHorizontal: '25%',
       fontSize: 16,
   },
   heading: {
@@ -126,10 +127,10 @@ export default StyleSheet.create({
   inputSignUp: {
     backgroundColor: '#f1f1f1',
     paddingVertical: '2%',
-    paddingHorizontal: '38%',
+    // paddingHorizontal: '38%',
     borderRadius: 10, 
     marginVertical: '2%',
-    paddingLeft: '3%',
+    paddingHorizontal: 10,
     fontWeight: '500',
   },
 

@@ -15,9 +15,15 @@ export default function LoginScreen() {
   const navigation = useNavigation();
  
   // if artist then home screen is feed
-  if (auth.currentUser) {
-    navigation.navigate('NavigationBar', { screen: 'Feed' });
-  } 
+
+  const verifyEmail = () => {
+    if (auth.currentUser.emailVerified) {
+        navigation.navigate('NavigationBar', { screen: 'Feed' });
+    } else {
+        alert("Please verify your email.");
+    }
+  }
+  
 
   // if client then home screen is search
   
@@ -33,6 +39,7 @@ export default function LoginScreen() {
     if (email !== "" && password !== ""){
       signInWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
+            verifyEmail();
           console.log("UID is", userUID);
           //Updating UID to the logged in user  
           navigation.navigate("UserProfile", {user: userCredential.user.uid});

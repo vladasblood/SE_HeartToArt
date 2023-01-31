@@ -19,6 +19,11 @@ import ManageAccountScreen from './screens/ManageAccountScreen';
 import CreateRequestScreen from './screens/CreateRequestScreen';
 import TransactionDetailsScreen from './screens/TransactionDetailsScreen';
 
+// import Login from './screens/Login';
+// import Home from './screens/Home';
+// import Signup from './screens/Signup';
+import Chat from './screens/Chat';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -58,6 +63,26 @@ export default function App() {
             options={{ headerShown: false }}
             name = "NavigationBar"
             component={NaviBar} />
+
+        {/* <Stack.Screen 
+            options ={ {headerShown: false, } } 
+            name="Home" 
+            component={Home} />
+
+        <Stack.Screen 
+            options ={ {headerShown: false} } 
+            name="Login" 
+            component={Login} />
+
+        <Stack.Screen 
+            options ={ {headerShown: false} } 
+            name="Signup" 
+            component={Signup} /> */}
+
+        {/* <Stack.Screen 
+            options ={ {headerShown: false} } 
+            name="Chat" 
+            component={Chat} /> */}
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -126,6 +151,17 @@ function NaviBar() {
         <Tab.Screen
           name = 'Accept' 
           component = {AcceptScreen} 
+          options = {() => ({
+            tabBarStyle: {
+                display: 'none'
+            }, 
+            tabBarButton: () => null,
+          })}
+        />
+
+        <Tab.Screen
+          name = 'Chat' 
+          component = {Chat} 
           options = {() => ({
             tabBarStyle: {
                 display: 'none'

@@ -87,9 +87,9 @@ const ManageAccountScreen = () => {
         //const docRef = (await db.collection('users').doc('userUID').get()).data().photoURL
 
         await uploadBytes(storageRef, bytes);
-        await readImage();
+        readImage();
         //await newPhoto();
-        await setUploading(true);
+        setUploading(true);
 
     }
 
@@ -317,7 +317,7 @@ const ManageAccountScreen = () => {
                 </View>
             
                 <View style={styles.downBar}>
-                         
+                    
                 </View>
                 
             </ScrollView>

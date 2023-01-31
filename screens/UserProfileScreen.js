@@ -160,137 +160,141 @@ export default function UserProfileScreen({ navigation }) {
 
     return (
         <SafeAreaView style={[styles.box]}>
-            <View style = {styles.uppermostBar}> 
-              
-            </View>
-            <ScrollView onScroll={readData}>
-                <View style={styles.userContainer}>
-                    <View style={styles.userLeftContainer}>
-
-                    {/* {oldUser.map(old => (<Text style = {styles.profilePhotoStyle} key = {old.id} source = {{uri: old.PhotoURL}}></Text>))} */}
-                        {/* <Image 
-                            style={styles.profilePhotoStyle}
-                            source = {{uri : image}} /> */}
-                    {/* {oldUser.map(old => (<Text key = {old.id}><Image style = {styles.profilePhotoStyle }source = {{uri: old.PhotoURL}}/></Text>))} */}
-                    {oldUser.map(old => (
-                        <Image
-                        key = {old.id}
-                        style = {styles.profilePhotoStyle}
-                        source = {
-                            {uri: old.PhotoURL}}
-                        />
-                        )
-                        )
-                    }
-                    </View>
-                    <View style={styles.userRightContainer}>
-                        <View style={styles.rightTopContainer}>
-                            <View style={styles.nameAndStyleContainer}>
-                                <Text style={styles.usernameText}>
-                                    {oldUser.map(old => (<Text key = {old.id}>{old.Username}</Text>))}
-                                </Text>
-                                <Text style={styles.emailText}>
-                                    {oldUser.map(old => (<Text key = {old.id}>{old.email}</Text>))}
-                                </Text>
-                                <View style = {styles.artStyle}>
-                                    <Text style = {styles.artStyleText}>
-                                        Template
-                                    </Text>
-                                </View>
-                                {/*
-                                    <Text style={styles.input}>
-                                        Email: {oldUser.map(old => (<Text key={old.id}>{old.email}</Text>))}
-                                    </Text>
-                                    <Text style={styles.input}>
-                                        Full Name: {oldUser.map(old => (<Text key={old.id}>{old.FirstName + old.LastName}</Text>))}
-                                    </Text>
-                                */}
-                            </View>
-                            <View style={styles.manageContainer}>
-                                <TouchableOpacity style={styles.manageAcc} onPress={manageAccount}>
-                                    <Text style={styles.manageText}>
-                                        Edit Account
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <View>
-                            {userBIO.map(bios => (<Text style = {styles.bioText} key = {bios.id}>{bios.textBIO}</Text>))}
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.pricingsOuter}>
-                    <View style={styles.pricingsContainer}>
-                        <View style={styles.pricingsLeftContainer}>
-                            <Image 
-                                style = {styles.pricingsPhoto} 
-                                source = {require('../assets/default-icon.png')}    
-                                />
-                        </View>
-                        <View style={styles.pricingsRightContainer}>
-                            <Text style={styles.pricings}>
-                                Pricings
-                            </Text>
-                            <Text style={styles.pricingsDesc}>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            </Text>
-                        </View>
-                        {/* 
-                            {auth.currentUser.emailVerified ? showContent() : showSendVerificationEmail()}
-                        */}
-
-                    </View>
-                    <View style={styles.pricingsContainer}>
-                        <View style={styles.pricingsLeftContainer}>
-                            <Image 
-                                style = {styles.pricingsPhoto} 
-                                source = {require('../assets/default-icon.png')}    
-                                />
-                        </View>
-                        <View style={styles.pricingsRightContainer}>
-                            <Text style={styles.pricings}>
-                                Pricings
-                            </Text>
-                            <Text style={styles.pricingsDesc}>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            </Text>
-                        </View>
-
-                    </View>
-                    <View style={styles.pricingsContainer}>
-                        <View style={styles.pricingsLeftContainer}>
-                            <Image 
-                                style = {styles.pricingsPhoto} 
-                                source = {require('../assets/default-icon.png')}    
-                                />
-                        </View>
-                        <View style={styles.pricingsRightContainer}>
-                            <Text style={styles.pricings}>
-                                Pricings
-                            </Text>
-                            <Text style={styles.pricingsDesc}>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            </Text>
-                        </View>
-
-                    </View>
-                </View>
-                <View style={styles.downBar}>
-                        
-                </View>
+            
+            
+                {/* ? showContent() : showSendVerificationEmail()} */}
+                <View style = {styles.uppermostBar}> 
                 
-                <TouchableOpacity onPress={logOut} style={styles.logOutStyle}>
-                    <Text style={styles.logOutTextStyle}>
-                        LOGOUT
-                    </Text>
-                </TouchableOpacity>
-            </ScrollView>
+                </View>
+                <ScrollView onScroll={readData}>
+                    <View style={styles.userContainer}>
+                        <View style={styles.userLeftContainer}>
+
+                        {/* {oldUser.map(old => (<Text style = {styles.profilePhotoStyle} key = {old.id} source = {{uri: old.PhotoURL}}></Text>))} */}
+                            {/* <Image 
+                                style={styles.profilePhotoStyle}
+                                source = {{uri : image}} /> */}
+                        {/* {oldUser.map(old => (<Text key = {old.id}><Image style = {styles.profilePhotoStyle }source = {{uri: old.PhotoURL}}/></Text>))} */}
+                        {oldUser.map(old => (
+                            <Image
+                            key = {old.id}
+                            style = {styles.profilePhotoStyle}
+                            source = {
+                                {uri: old.PhotoURL}}
+                            />
+                            )
+                            )
+                        }
+                        </View>
+                        <View style={styles.userRightContainer}>
+                            <View style={styles.rightTopContainer}>
+                                <View style={styles.nameAndStyleContainer}>
+                                    <Text style={styles.usernameText}>
+                                        {oldUser.map(old => (<Text key = {old.id}>{old.Username}</Text>))}
+                                    </Text>
+                                    <Text style={styles.emailText}>
+                                        {oldUser.map(old => (<Text key = {old.id}>{old.email}</Text>))}
+                                    </Text>
+                                    <View style = {styles.artStyle}>
+                                        <Text style = {styles.artStyleText}>
+                                            Template
+                                        </Text>
+                                    </View>
+                                    {/*
+                                        <Text style={styles.input}>
+                                            Email: {oldUser.map(old => (<Text key={old.id}>{old.email}</Text>))}
+                                        </Text>
+                                        <Text style={styles.input}>
+                                            Full Name: {oldUser.map(old => (<Text key={old.id}>{old.FirstName + old.LastName}</Text>))}
+                                        </Text>
+                                    */}
+                                </View>
+                                <View style={styles.manageContainer}>
+                                    <TouchableOpacity style={styles.manageAcc} onPress={manageAccount}>
+                                        <Text style={styles.manageText}>
+                                            Edit Account
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            <View>
+                                {userBIO.map(bios => (<Text style = {styles.bioText} key = {bios.id}>{bios.textBIO}</Text>))}
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pricingsOuter}>
+                        <View style={styles.pricingsContainer}>
+                            <View style={styles.pricingsLeftContainer}>
+                                <Image 
+                                    style = {styles.pricingsPhoto} 
+                                    source = {require('../assets/default-icon.png')}    
+                                    />
+                            </View>
+                            <View style={styles.pricingsRightContainer}>
+                                <Text style={styles.pricings}>
+                                    Pricings
+                                </Text>
+                                <Text style={styles.pricingsDesc}>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting 
+                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                                </Text>
+                            </View>
+                            {/* 
+                                
+                            */}
+
+                        </View>
+                        <View style={styles.pricingsContainer}>
+                            <View style={styles.pricingsLeftContainer}>
+                                <Image 
+                                    style = {styles.pricingsPhoto} 
+                                    source = {require('../assets/default-icon.png')}    
+                                    />
+                            </View>
+                            <View style={styles.pricingsRightContainer}>
+                                <Text style={styles.pricings}>
+                                    Pricings
+                                </Text>
+                                <Text style={styles.pricingsDesc}>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting 
+                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                                </Text>
+                            </View>
+
+                        </View>
+                        <View style={styles.pricingsContainer}>
+                            <View style={styles.pricingsLeftContainer}>
+                                <Image 
+                                    style = {styles.pricingsPhoto} 
+                                    source = {require('../assets/default-icon.png')}    
+                                    />
+                            </View>
+                            <View style={styles.pricingsRightContainer}>
+                                <Text style={styles.pricings}>
+                                    Pricings
+                                </Text>
+                                <Text style={styles.pricingsDesc}>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting 
+                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                                </Text>
+                            </View>
+
+                        </View>
+                    </View>
+                    <View style={styles.downBar}>
+                            
+                    </View>
+                    
+                    <TouchableOpacity onPress={logOut} style={styles.logOutStyle}>
+                        <Text style={styles.logOutTextStyle}>
+                            LOGOUT
+                        </Text>
+                    </TouchableOpacity>
+                </ScrollView>
+                
         </SafeAreaView>
     )
 }

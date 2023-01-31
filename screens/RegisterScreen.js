@@ -43,6 +43,11 @@ export default function RegisterScreen()  {
         setPrevInput(false);
     };
 
+    const showPrev = () => {
+        setNextInput(false);
+        setPrevInput(true);
+    };
+
     const backButton = () => {
         setNextInput(false);
         setPrevInput(true);
@@ -134,6 +139,8 @@ export default function RegisterScreen()  {
             {/* Inside White Container*/}
             <View style =  {styles.componentContainer}>
                 <Text style = {styles.title}>Sign Up</Text>
+                <Text style={[styles.errorText]}>{validMessage}</Text>
+                
             {prevInput && (
                 <View>
                 {/* Email Label */}
@@ -152,7 +159,7 @@ export default function RegisterScreen()  {
                 value = {password}
                 style = {styles.inputSignUp}
                 secureTextEntry = {true}
-                onChangeText = {text => setPassword(text)} 
+                onChangeText={(value) => validateAndSet(value, confirmPassword, setPassword)}
                 />
 
                 {/* Confirm Password Label */}
@@ -161,7 +168,7 @@ export default function RegisterScreen()  {
                 value = {confirmPassword}
                 style = {styles.inputSignUp}
                 secureTextEntry = {true}
-                onChangeText = {text => setConfirmPassword(text)} 
+                onChangeText={(value) => validateAndSet(value, password, setConfirmPassword)}
                 />
 
                 {/* Next Button*/}
@@ -189,9 +196,16 @@ export default function RegisterScreen()  {
                 placeholder = "Enter Last Name"
                 value = {LastName}
                 style = {styles.inputSignUp}
-                secureTextEntry = {true}
                 onChangeText = {text => setLastName(text)} 
                 />
+
+                {/* Previous Button*/}
+                <TouchableOpacity
+                style={styles.button}
+                onPress={showPrev}
+                >
+                <Text style={styles.buttonText}>Previous</Text>
+                </TouchableOpacity>
                 
                 {/* Sign Up Button*/}
                 <TouchableOpacity
@@ -201,7 +215,6 @@ export default function RegisterScreen()  {
                 <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
                 </View>
-                
             )}
 
             </View> 
