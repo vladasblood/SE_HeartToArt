@@ -8,8 +8,6 @@ import logopic from "../assets/Heart.png"
 const backImage = require("../assets/BlueBackground.jpg")
 
 const HomeScreen = () => {
-  // const navigation = useNavigation();
-  // navigation.navigate('Register')
   const navigation = useNavigation();
 
   //Login
@@ -59,24 +57,6 @@ const HomeScreen = () => {
         </KeyboardAvoidingView>
     </View>
 
-    // <View style={styles.buttonContainer}>
-    //   {/* LOGIN */}
-    //   <TouchableOpacity
-    //     style={styles.button}
-    //     onPress={handleLogin}
-    //   >
-    //     <Text style={styles.buttonText}>Log in</Text>
-    //   </TouchableOpacity>
-
-    //   {/* SIGN UP */}
-    //   <TouchableOpacity
-    //     style={[styles.button, styles.buttonOutline]}
-    //     onPress={handleRegister}
-    //   >
-    //     <Text style={styles.buttonOutlineText}>Register</Text>
-    //   </TouchableOpacity>
-
-    // </View>
   )
 }
 

@@ -83,7 +83,6 @@ export default function Chat() {
           messages={messages}
           showAvatarForEveryMessage={false}
           showUserAvatar={false}
-          renderAvatar={null}
           onSend={messages => onSend(messages)}
           messagesContainerStyle={{
             backgroundColor: '#fff'
@@ -97,7 +96,7 @@ export default function Chat() {
 
             _id: auth?.currentUser?.email,
             name: auth?.currentUser?.displayName,
-            // avatar: 'https://placeimg.com/140/140/any',
+            avatar: 'https://placeimg.com/140/140/any',
           }}
         />
       );

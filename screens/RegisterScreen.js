@@ -78,18 +78,7 @@ export default function RegisterScreen()  {
         setValue(value);
     };
 
-    //Write New User Data
-    // let addToDatabase = () => {
-    //     const newUser = collection(db, "users");
-    //     setDoc(newUser, { FirstName, LastName, email, password, confirmPassword })
-    //         .then(response => {
-    //             console.log(response)
-    //         })
-    //         .catch(error => {
-    //             console.log(error.message)
-    //         })
-    // };
-
+    //Write new User Data
     let handleSignUp = () => {
         if (password === confirmPassword) {
             createUserWithEmailAndPassword(auth, email, password)

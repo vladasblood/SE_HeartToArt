@@ -12,20 +12,28 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import reqID from './FeedScreen';
 import { styles } from '../styles/acceptStyle.js';
-
+import { auth, db } from '../firebase';
+import { doc, updateDoc, setDoc, query, collection, getDocs, where } from 'firebase/firestore';
 const Stack = createNativeStackNavigator();
+
 
 const AcceptScreen = ({ route, navigation }) => {
 //   const navigation = useNavigation();
 
   const clickedUser = route.params;
-  
+  const claimed = "claimed";
 
   const date = clickedUser.date.toDate().toString().replace('GMT+0000 (GMT)', '');
 
-  const confirmAccept = () => {
-    backToFeed();
+  const confirmAccept = async () => {
 
+    //Update Specific Request into CLAIMED
+    const getuid = query(doc(db, 'requests', clickedUser.uID));
+    await updateDoc(getuid, {
+      reqStatus: claimed,
+    })
+    
+    backToFeed();
   }
 
   const backToFeed = () => {

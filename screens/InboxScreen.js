@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { styles } from '../styles/inboxStyle.js';
 
 const InboxScreen = () => {
+  
   const navigation = useNavigation(); 
 
   const seeMessage = () => {
@@ -23,10 +24,7 @@ const InboxScreen = () => {
             <Image style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
           </View>
           <View style = {styles.messageContainer}>
-            <Text style = {styles.userName}>Username</Text>
-            
-            <Text style = {styles.messageStyle}>hatdoghatdoghatdoghatdoghatdoghatdoghatdoghatdog</Text>
-            
+            <Text style = {styles.userName}>ViewChat</Text>  
           </View>
           <MaterialCommunityIcons 
             name='chevron-right' 
@@ -35,25 +33,7 @@ const InboxScreen = () => {
             style={{alignSelf: 'center'}}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.requestContainer} onPress={seeMessage}>
-          <View style = {styles.photoContainer}>
-            <Image 
-            style = {styles.profilePhoto} source={require('../assets/default-icon.png')} />
-          </View>
-          <View style = {styles.messageContainer}>
-            <Text style = {styles.userName}>Username</Text>
-            
-            <Text style = {styles.messageStyle}>hatdoghatdoghatdoghatdoghatdoghatdoghatdoghatdog</Text>
-            
-          </View>
-          <MaterialCommunityIcons 
-            name='chevron-right' 
-            color='#4f4f4f' 
-            size={30} 
-            style={{alignSelf: 'center'}}
-          />
-        </TouchableOpacity>
-
+    
       </ScrollView>
 
     </View>

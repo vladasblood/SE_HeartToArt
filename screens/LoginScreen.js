@@ -15,6 +15,10 @@ export default function LoginScreen() {
  
   const navigation = useNavigation();
   const [userType, setUserType] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+  const [validMessage, setValidMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const getData = async () => {
     try {
@@ -39,15 +43,9 @@ export default function LoginScreen() {
             alert("Please verify your email.");
         }
     } catch (e) {
-        console.log("hatdoggers");
+        console.log(e);
     }
   }
-
-  const [errorMessage, setErrorMessage] = useState("");
-  const [validMessage, setValidMessage] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  
 
   const onHandleLogin = async () => {
     if (email !== "" && password !== ""){

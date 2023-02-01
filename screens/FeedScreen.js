@@ -10,10 +10,10 @@ const FeedScreen = ({navigation}) => {
 //   const navigation = useNavigation();
 
   const [data, setData] = useState([]);
+  const [claimed, setClaimed] = useState(true);
 
   useLayoutEffect(() => {
     const ref = collection(db, "requests");
-
     onSnapshot(ref, (categories) => 
         setData(categories.docs.map((category) => ({
             data: category.data()
@@ -25,9 +25,9 @@ const FeedScreen = ({navigation}) => {
   return (
     <View style = {styles.box}>
         <View style = {styles.uppermostBar}> 
-            
         </View>
         <ScrollView> 
+
         {data.map((item, key) => (
             <View key = {key} >
             
@@ -64,11 +64,17 @@ const FeedScreen = ({navigation}) => {
                     </View>
                 </View>
             </View>
-            ))}
-            <View style = {styles.downBar}>
+        ))}
+        
+       
 
+            <View style = {styles.downBar}>
             </View>
         </ScrollView>
+        
+          {/* New CLAIMED */}
+       
+
     </View>
   );
 }

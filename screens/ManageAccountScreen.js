@@ -23,13 +23,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
 const ManageAccountScreen = () => {
-    const [price, onChangePrice] = React.useState('');
-    const [priceDesc, onChangePriceDesc] = React.useState('');
-    const [price2, onChangePrice2] = React.useState('');
-    const [priceDesc2, onChangePriceDesc2] = React.useState('');
-    const [price3, onChangePrice3] = React.useState('');
-    const [priceDesc3, onChangePriceDesc3] = React.useState('');
-
+    
     const [textBIO, setTextBIO] = useState("");
     const [userName, setUserName] = useState("");
 
@@ -165,76 +159,6 @@ const ManageAccountScreen = () => {
                     textStyle={styles.dropdownText}
                     containerStyle={styles.dropdownContainer}
                 />
-                <Text style = {styles.smallTitle}>Pricings</Text>
-                <View style={styles.sideBySide}>
-                    <Image 
-                        style={styles.pricePhotos}
-                        source={require('../assets/default-icon.png')} 
-                    />
-        
-                    <View style={styles.pricings}>
-                        <TextInput
-                            style={styles.pricesInput}
-                            keyboardType="numeric"
-                            onChangeText={onChangePrice}
-                            value={price}
-                            placeholder="Php. 0000.00" />
-                        <TextInput
-                            multiline={true}
-                            numberOfLines={4}
-                            style={styles.pricesDesc}
-                            keyboardType="visible-password"
-                            onChangeText={onChangePriceDesc}
-                            value={priceDesc}
-                            placeholder="Description" />
-                    </View>
-                </View>
-                <View style={styles.sideBySide}>
-                    <Image 
-                        style={styles.pricePhotos}
-                        source={require('../assets/default-icon.png')} 
-                    />
-        
-                    <View style={styles.pricings}>
-                        <TextInput
-                            style={styles.pricesInput}
-                            keyboardType="numeric"
-                            onChangeText={onChangePrice2}
-                            value={price2}
-                            placeholder="Php. 0000.00" />
-                        <TextInput
-                            multiline={true}
-                            numberOfLines={4}
-                            style={styles.pricesDesc}
-                            keyboardType="visible-password"
-                            onChangeText={onChangePriceDesc2}
-                            value={priceDesc2}
-                            placeholder="Description" />
-                    </View>
-                </View>
-                <View style={styles.sideBySide}>
-                    <Image 
-                        style={styles.pricePhotos}
-                        source={require('../assets/default-icon.png')} 
-                    />
-        
-                    <View style={styles.pricings}>
-                        <TextInput
-                            style={styles.pricesInput}
-                            keyboardType="numeric"
-                            onChangeText={onChangePrice3}
-                            value={price3}
-                            placeholder="Php. 0000.00" />
-                        <TextInput
-                            multiline={true}
-                            numberOfLines={4}
-                            style={styles.pricesDesc}
-                            keyboardType="visible-password"
-                            onChangeText={onChangePriceDesc3}
-                            value={priceDesc3}
-                            placeholder="Description" />
-                    </View>
-                    </View>
                 </View>
             )
         }
