@@ -8,6 +8,7 @@ import { initializeApp } from 'firebase/app';
 import { firebaseConfig, createUserDocument } from '../firebase';
 import { TabRouter, useLinkProps, useNavigation } from '@react-navigation/native';
 import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+
 // import styles from '../styles/styles.js';
 import InlineTextButton from '../styles/InlineTextButton.js';
 import { auth, db } from '../firebase';
@@ -15,6 +16,8 @@ import { auth, db } from '../firebase';
 import { Ionicons } from '@expo/vector-icons';
 import logopic from "../assets/Heart.png" 
 import styles from '../styles/Login&Signup-Styles.js'
+import DropDownPicker from 'react-native-dropdown-picker';
+import { TurboModuleRegistry } from 'react-native';
 const backImage = require("../assets/BlueBackground.jpg")
 
 export default function RegisterScreen()  {
@@ -33,7 +36,16 @@ export default function RegisterScreen()  {
     const PhotoURL = "https://firebasestorage.googleapis.com/v0/b/hearttoart-a8546.appspot.com/o/userImages%2Fdefault-icon.png?alt=media&token=7e7d8ed0-6733-454c-b386-40dfc0a32370";
     const Username = "";
 
+    const [accTypeOpen, setAccTypeOpen] = useState(false);
+    const [accTypeValue, setAccTypeValue] = useState(null);
+    const [accType, setAccType] = useState([
+        {label: 'Artist', value: 'artist'},
+        {label: 'Client', value: 'client'},
+    ]);
+
+    const [accountType, setAccountType] = useState(null);
     
+    const [buttonEnabled, setButtonEnabled] = useState(false);
     
     //Navigation
     const navigation = useNavigation();
@@ -57,8 +69,10 @@ export default function RegisterScreen()  {
     let validateAndSet = (value, valueToCompare, setValue) => {
         if (value !== valueToCompare) {
             setValidMessage("Passwords do not match");
+            setButtonEnabled(false);
         } else {
             setValidMessage("");
+            setButtonEnabled(true);
         }
 
         setValue(value);
@@ -90,7 +104,8 @@ export default function RegisterScreen()  {
                     password,
                     confirmPassword,
                     userUID,
-                    PhotoURL
+                    PhotoURL,
+                    accountType
                 })
                 sendEmailVerification(auth.currentUser);
                 navigation.replace("Login");
@@ -118,7 +133,8 @@ export default function RegisterScreen()  {
             behavior="height" 
             keyboardVerticalOffset={0}>
             
-            {/* Back Button */}
+            { prevInput && ( // Back to Login 
+            
             <TouchableOpacity 
                 style = {styles.backButtonContainer} 
                 onPress={backButton}>
@@ -127,8 +143,21 @@ export default function RegisterScreen()  {
                 size={27} 
                 color="#ffffff"
             />  
-
             </TouchableOpacity>
+            )}
+            
+            { nextInput && ( // Back to Previous Inputs 
+            
+            <TouchableOpacity 
+                style = {styles.backButtonContainer} 
+                onPress={showPrev}>
+                <Ionicons 
+                name="arrow-back-sharp" 
+                size={27} 
+                color="#ffffff"
+            />  
+            </TouchableOpacity>
+            )}
 
             {/* Heading Text and Logo */}
             <View style = {styles.headingContainer}>
@@ -171,13 +200,15 @@ export default function RegisterScreen()  {
                 onChangeText={(value) => validateAndSet(value, password, setConfirmPassword)}
                 />
 
-                {/* Next Button*/}
-                <TouchableOpacity
+                { buttonEnabled && ( // Next Button
+                <TouchableOpacity 
                 style={styles.button}
                 onPress={showNext}
                 >
                 <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
+                )}
+
                 </View>
             )}
 
@@ -199,13 +230,20 @@ export default function RegisterScreen()  {
                 onChangeText = {text => setLastName(text)} 
                 />
 
-                {/* Previous Button*/}
-                <TouchableOpacity
-                style={styles.button}
-                onPress={showPrev}
-                >
-                <Text style={styles.buttonText}>Previous</Text>
-                </TouchableOpacity>
+                <DropDownPicker 
+                    placeholder= 'Select Account Type'
+                    open={accTypeOpen}
+                    value={accTypeValue}
+                    items={accType}
+                    setOpen={setAccTypeOpen}
+                    setValue={setAccTypeValue}
+                    setItems={setAccType}
+                    onSelectItem={(item) => setAccountType(item.value)}
+                    listMode="SCROLLVIEW"
+                    textStyle={styles.dropdownText}
+                    selectedItemContainerStyle={styles.dropdownSelected}
+                    containerStyle={styles.dropdownCont}
+                />
                 
                 {/* Sign Up Button*/}
                 <TouchableOpacity
@@ -222,76 +260,3 @@ export default function RegisterScreen()  {
         </View>
     );
 };
-
-
-
-{/* <KeyboardAvoidingView
-style={styles.container}
-behavior={Platform.OS === "ios" ? "padding" : "null"}
-keyboardVerticalOffset={60}
->
-<View style={styles.inputContainer}>
-
-    <Text style={[styles.errorText]}>{validMessage}</Text>
-
-    <TextInput
-        placeholder="First Name"
-        value={FirstName}
-        onChangeText={setFirstName}
-        style={styles.input}
-    />
-
-    <TextInput
-        placeholder="Last Name"
-        value={LastName}
-        onChangeText={setLastName}
-        style={styles.input}
-    />
-
-    <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        style={styles.input}
-    />
-
-    <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={(value) => validateAndSet(value, confirmPassword, setPassword)}
-        style={styles.input}
-        secureTextEntry
-    />
-
-    <TextInput
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChangeText={(value) => validateAndSet(value, password, setConfirmPassword)}
-        style={styles.input}
-        secureTextEntry
-    />
-
-    <View style={styles.rowContainer}>
-        <Text style={styles.input}>Existing Account Already?
-            <InlineTextButton text="Login"
-                onPress={() => navigation.navigate("Login")}
-            />
-        </Text>
-    </View>
-
-</View>
-
-<View style={styles.buttonContainer}>
-
-     SIGN UP 
-    <TouchableOpacity
-        style={[styles.button, styles.buttonOutline]}
-        onPress={combinedData}
-    >
-        <Text style={styles.buttonOutlineText}>Register</Text>
-    </TouchableOpacity>
-
-
-</View>
-
-</KeyboardAvoidingView> */}

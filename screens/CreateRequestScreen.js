@@ -35,8 +35,7 @@ const CreateRequestScreen = () => {
 
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
-  const curr = new Date();
-  const currString = curr.toLocaleDateString();
+  const currString = date.toLocaleDateString();
   
   const confirmRequest = () => {
     // handle 

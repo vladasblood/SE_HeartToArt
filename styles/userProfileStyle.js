@@ -184,6 +184,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '900'
     },
+
+    bodyCont: {
+        height: 200,
+        // backgroundColor: 'white'
+    },
 })
 
 export { styles }

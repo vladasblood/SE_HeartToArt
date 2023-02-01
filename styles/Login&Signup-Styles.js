@@ -70,7 +70,7 @@ export default StyleSheet.create({
   },
   button: {
       backgroundColor: '#053dc4',
-      width: '50%',
+      width: '54%',
       paddingVertical: '2%',
       borderRadius: 100,
       alignItem: 'center',
@@ -82,7 +82,7 @@ export default StyleSheet.create({
       fontWeight: '800',
       color: 'white',
       paddingVertical: '2%',
-      paddingHorizontal: '25%',
+      paddingHorizontal: '23%',
       fontSize: 16,
   },
   heading: {
@@ -132,6 +132,20 @@ export default StyleSheet.create({
     marginVertical: '2%',
     paddingHorizontal: 10,
     fontWeight: '500',
+  },
+
+  dropdownText: {
+    
+  },
+
+  dropdownSelected: {
+    backgroundColor: '#f1f1f1',
+    borderWidth: 0,
+  },
+
+  dropdownCont: {
+    zIndex: 1,
+    marginTop: 5,
   },
 
 })

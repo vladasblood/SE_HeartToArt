@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
         // paddingVertical: 20,
         paddingHorizontal: 30,
         backgroundColor: '#FFFFFF',
-        paddingBottom: 10,
         marginBottom: 10,
+        paddingTop: 30,
         justifyContent: 'center',
     },
 
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     smallTitle: {
         fontWeight: '700',
         fontSize: 13,
-        paddingTop: 30,
     },
 
     input: {
@@ -93,14 +92,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: '#4f4f4f',
         borderBottomWidth: 0.5,
-    },
-
-    inputUser: {
-        fontSize: 11,
-        fontWeight: '500',
-        color: '#4f4f4f',
-        borderBottomWidth: 0.5,
-        marginBottom: 20,
+        marginBottom: 30,
     },
 
     sideBySide: {
@@ -154,7 +146,6 @@ const styles = StyleSheet.create({
     
     dropdownContainer: {
         marginTop: 10,
-        // height: 50,
     },
 
     dropdownText: {
@@ -167,8 +158,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#053dc4',
         borderRadius: 5,
         marginHorizontal: '5%',
-        marginTop: -10,
-        marginBottom: 10,
+        marginVertical: 15,
+        
     },
 
     saveTextStyle: {
@@ -176,6 +167,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: '#f1f1f1',
         fontWeight: '900'
+    },
+
+    saveContainer: {
+        backgroundColor: 'white',
+        marginBottom: 10,
     },
 
 })

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-import React from 'react';
+import React, {useState,} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -30,6 +30,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   return (
     <NavigationContainer>
 
@@ -61,28 +62,14 @@ export default function App() {
 
         <Stack.Screen 
             options={{ headerShown: false }}
-            name = "NavigationBar"
-            component={NaviBar} />
-
-        {/* <Stack.Screen 
-            options ={ {headerShown: false, } } 
-            name="Home" 
-            component={Home} />
+            name = "NavigationBarClient"
+            component={NaviBarClient} />
 
         <Stack.Screen 
-            options ={ {headerShown: false} } 
-            name="Login" 
-            component={Login} />
+            options={{ headerShown: false }}
+            name = "NavigationBarArtist"
+            component={NaviBarArtist} />
 
-        <Stack.Screen 
-            options ={ {headerShown: false} } 
-            name="Signup" 
-            component={Signup} /> */}
-
-        {/* <Stack.Screen 
-            options ={ {headerShown: false} } 
-            name="Chat" 
-            component={Chat} /> */}
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -92,7 +79,8 @@ export default function App() {
 
 const Tab = createBottomTabNavigator();
 
-function NaviBar() {
+function NaviBarArtist() {
+
   return(
    
         <Tab.Navigator 
@@ -123,22 +111,7 @@ function NaviBar() {
         />
 
         <Tab.Screen
-          name = 'ClientHome'
-          component = {ClientHomeScreen} 
-          options = {{
-            tabBarItemStyle: {
-              marginTop: 1,
-            },
-            tabBarIcon: () => (<MaterialCommunityIcons 
-              name='home' 
-              color={'red'} 
-              size={32} />
-            )
-          }}
-        />
-
-        <Tab.Screen
-          name = 'ManageAccount' 
+          name = 'ManageAccount'
           component = {ManageAccountScreen} 
           options = {() => ({
             tabBarStyle: {
@@ -162,17 +135,6 @@ function NaviBar() {
         <Tab.Screen
           name = 'Chat' 
           component = {Chat} 
-          options = {() => ({
-            tabBarStyle: {
-                display: 'none'
-            }, 
-            tabBarButton: () => null,
-          })}
-        />
-
-        <Tab.Screen
-          name = 'CreateRequest' 
-          component = {CreateRequestScreen} 
           options = {() => ({
             tabBarStyle: {
                 display: 'none'
@@ -225,6 +187,116 @@ function NaviBar() {
   
   )
 }
+
+
+function NaviBarClient() {
+
+    return(
+     
+        <Tab.Navigator 
+              screenOptions = {{ 
+                  headerShown: false, 
+                  tabBarStyle: {
+                  backgroundColor: '#0364cd',
+                  height: 50,
+              },
+              tabBarShowLabel: false,
+              tabBarHideOnKeyboard: true,
+          }}
+        >
+  
+          <Tab.Screen
+            name = 'ClientHome'
+            component = {ClientHomeScreen} 
+            options = {{
+              tabBarItemStyle: {
+                marginTop: 1,
+              },
+              tabBarIcon: () => (<MaterialCommunityIcons 
+                name='home' 
+                color={'white'} 
+                size={32} />
+              )
+            }}
+          />
+
+          <Tab.Screen
+            name = 'ManageAccount' 
+            component = {ManageAccountScreen} 
+            options = {() => ({
+              tabBarStyle: {
+                  display: 'none'
+              }, 
+              tabBarButton: () => null,
+            })}
+          />
+  
+          <Tab.Screen
+            name = 'Chat' 
+            component = {Chat} 
+            options = {() => ({
+              tabBarStyle: {
+                  display: 'none'
+              }, 
+              tabBarButton: () => null,
+            })}
+          />
+  
+          <Tab.Screen
+            name = 'CreateRequest' 
+            component = {CreateRequestScreen} 
+            options = {() => ({
+              tabBarStyle: {
+                  display: 'none'
+              }, 
+              tabBarButton: () => null,
+            })}
+          />
+  
+          <Tab.Screen
+            name = 'Transaction' 
+            component = {TransactionDetailsScreen} 
+            options = {() => ({
+              tabBarStyle: {
+                  display: 'none'
+              }, 
+              tabBarButton: () => null,
+            })}
+          />
+  
+          <Tab.Screen
+            name = 'Inbox' 
+            component = {InboxScreen} 
+            options = {{
+              tabBarItemStyle: {
+                marginTop: 2,
+              },
+              tabBarIcon: () => (<MaterialCommunityIcons 
+                name = 'message-text-outline' 
+                color = 'white' 
+                size = {32}
+              />)
+            }}
+          />
+  
+          <Tab.Screen
+            name = 'Profile' 
+            component = {UserProfileScreen} 
+            options = {{
+              tabBarItemStyle: {
+                marginTop: 2,
+              },
+              tabBarIcon: () => (<Image 
+                  style = {styles.img}
+                  source = {require('./assets/default-icon.png')}
+              />)
+            }}
+          />
+            
+        </Tab.Navigator>
+    
+    )
+  }
 
 const styles = StyleSheet.create({
   img: {

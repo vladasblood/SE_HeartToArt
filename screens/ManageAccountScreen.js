@@ -17,13 +17,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { doc, updateDoc, setDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage"
+import { getStorage, ref, uploadBytes, getDownloadURL, getFirestore} from "firebase/storage"
 import { auth, db } from '../firebase';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
 const ManageAccountScreen = () => {
-    const [bio, onChangeBio] = React.useState('');
     const [price, onChangePrice] = React.useState('');
     const [priceDesc, onChangePriceDesc] = React.useState('');
     const [price2, onChangePrice2] = React.useState('');
@@ -52,12 +51,28 @@ const ManageAccountScreen = () => {
         {label: 'Landscape', value: 'landscape'},
     ]);
 
-    // useEffect(() => {
-    //     newPhoto();
-    // }, []);
+    const [userType, setUserType] = useState({});
 
-    
+    if (userType=='artist') {
+        setShowArtistDetails(true);
+    }
+
+    const getData = async () => {
+      const db = getFirestore();
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      try {
+          const docSnapshot = await getDoc(docRef);
+          setUserType(docSnapshot.data().accountType);
+
+      } catch  (error) {
+          console.log("Cannot get data.")
+      }
+    }
   
+    useEffect(() => {
+      getData();
+    })
+
     const backToAccount = () => {
       navigation.navigate('Profile');
     }
@@ -90,7 +105,6 @@ const ManageAccountScreen = () => {
         readImage();
         //await newPhoto();
         setUploading(true);
-
     }
 
     const readImage = () => {
@@ -116,7 +130,6 @@ const ManageAccountScreen = () => {
                 userUID: user_id,
             })
         } catch (e) {}
-
         setUploading(false);
     }
 
@@ -127,7 +140,6 @@ const ManageAccountScreen = () => {
         })
     }
 
-
     const saveAllChanges = () => {
         //Upload First to Firebase Storage
         uploadImage();
@@ -135,6 +147,98 @@ const ManageAccountScreen = () => {
         changeBIO();
         console.log('Uploaded Images');   
         setUploading(false); 
+    }
+
+    function ShowArtist() {
+        if (userType == 'artist') {
+            return (
+                <View>
+                <Text style = {styles.smallTitle}>Template</Text>
+                <DropDownPicker 
+                    open={artOpen}
+                    value={artValue}
+                    items={arts}
+                    setOpen={setArtOpen}
+                    setValue={setArtValue}
+                    setItems={setArts}
+                    listMode="SCROLLVIEW"
+                    textStyle={styles.dropdownText}
+                    containerStyle={styles.dropdownContainer}
+                />
+                <Text style = {styles.smallTitle}>Pricings</Text>
+                <View style={styles.sideBySide}>
+                    <Image 
+                        style={styles.pricePhotos}
+                        source={require('../assets/default-icon.png')} 
+                    />
+        
+                    <View style={styles.pricings}>
+                        <TextInput
+                            style={styles.pricesInput}
+                            keyboardType="numeric"
+                            onChangeText={onChangePrice}
+                            value={price}
+                            placeholder="Php. 0000.00" />
+                        <TextInput
+                            multiline={true}
+                            numberOfLines={4}
+                            style={styles.pricesDesc}
+                            keyboardType="visible-password"
+                            onChangeText={onChangePriceDesc}
+                            value={priceDesc}
+                            placeholder="Description" />
+                    </View>
+                </View>
+                <View style={styles.sideBySide}>
+                    <Image 
+                        style={styles.pricePhotos}
+                        source={require('../assets/default-icon.png')} 
+                    />
+        
+                    <View style={styles.pricings}>
+                        <TextInput
+                            style={styles.pricesInput}
+                            keyboardType="numeric"
+                            onChangeText={onChangePrice2}
+                            value={price2}
+                            placeholder="Php. 0000.00" />
+                        <TextInput
+                            multiline={true}
+                            numberOfLines={4}
+                            style={styles.pricesDesc}
+                            keyboardType="visible-password"
+                            onChangeText={onChangePriceDesc2}
+                            value={priceDesc2}
+                            placeholder="Description" />
+                    </View>
+                </View>
+                <View style={styles.sideBySide}>
+                    <Image 
+                        style={styles.pricePhotos}
+                        source={require('../assets/default-icon.png')} 
+                    />
+        
+                    <View style={styles.pricings}>
+                        <TextInput
+                            style={styles.pricesInput}
+                            keyboardType="numeric"
+                            onChangeText={onChangePrice3}
+                            value={price3}
+                            placeholder="Php. 0000.00" />
+                        <TextInput
+                            multiline={true}
+                            numberOfLines={4}
+                            style={styles.pricesDesc}
+                            keyboardType="visible-password"
+                            onChangeText={onChangePriceDesc3}
+                            value={priceDesc3}
+                            placeholder="Description" />
+                    </View>
+                    </View>
+                </View>
+            )
+        }
+        return null;
     }
 
     return (
@@ -167,7 +271,7 @@ const ManageAccountScreen = () => {
             </View>
             
             <ScrollView>
-                <View style={styles.container}>
+                <View style={styles.saveContainer}>
 
                     <TouchableOpacity onPress={changeProfilePicture}>
 
@@ -194,11 +298,11 @@ const ManageAccountScreen = () => {
                     <Text style={styles.smallTitle}>Username</Text>
                         <View>
                             <TextInput
-                                style={styles.inputUser}
+                                style={styles.input}
                                 keyboardType="visible-password"
                                 onChangeText={setUserName}
                                 value={userName}
-                                placeholder="New Username..." />
+                                />
                         </View>
                 </View>
                 <View style={styles.container}>
@@ -209,97 +313,15 @@ const ManageAccountScreen = () => {
                             keyboardType="visible-password"
                             onChangeText={setTextBIO}
                             value={textBIO}
-                            placeholder="Type Here..." />
+                             />
                     </View>
-                    <Text style = {styles.smallTitle}>Template</Text>
-                    <DropDownPicker 
-                        open={artOpen}
-                        value={artValue}
-                        items={arts}
-                        setOpen={setArtOpen}
-                        setValue={setArtValue}
-                        setItems={setArts}
-                        listMode="SCROLLVIEW"
-                        textStyle={styles.dropdownText}
-                        containerStyle={styles.dropdownContainer}
-                    />
-                    <Text style = {styles.smallTitle}>Pricings</Text>
-                    <View style={styles.sideBySide}>
-                        <Image 
-                            style={styles.pricePhotos}
-                            source={require('../assets/default-icon.png')} 
-                        />
 
-                        <View style={styles.pricings}>
-                            <TextInput
-                                style={styles.pricesInput}
-                                keyboardType="numeric"
-                                onChangeText={onChangePrice}
-                                value={price}
-                                placeholder="Php. 0000.00" />
-                            <TextInput
-                                multiline={true}
-                                numberOfLines={4}
-                                style={styles.pricesDesc}
-                                keyboardType="visible-password"
-                                onChangeText={onChangePriceDesc}
-                                value={priceDesc}
-                                placeholder="Description" />
-                        </View>
-                    </View>
-                    <View style={styles.sideBySide}>
-                        <Image 
-                            style={styles.pricePhotos}
-                            source={require('../assets/default-icon.png')} 
-                        />
-
-                        <View style={styles.pricings}>
-                            <TextInput
-                                style={styles.pricesInput}
-                                keyboardType="numeric"
-                                onChangeText={onChangePrice2}
-                                value={price2}
-                                placeholder="Php. 0000.00" />
-                            <TextInput
-                                multiline={true}
-                                numberOfLines={4}
-                                style={styles.pricesDesc}
-                                keyboardType="visible-password"
-                                onChangeText={onChangePriceDesc2}
-                                value={priceDesc2}
-                                placeholder="Description" />
-                        </View>
-                    </View>
-                    <View style={styles.sideBySide}>
-                        <Image 
-                            style={styles.pricePhotos}
-                            source={require('../assets/default-icon.png')} 
-                        />
-
-                        <View style={styles.pricings}>
-                            <TextInput
-                                style={styles.pricesInput}
-                                keyboardType="numeric"
-                                onChangeText={onChangePrice3}
-                                value={price3}
-                                placeholder="Php. 0000.00" />
-                            <TextInput
-                                multiline={true}
-                                numberOfLines={4}
-                                style={styles.pricesDesc}
-                                keyboardType="visible-password"
-                                onChangeText={onChangePriceDesc3}
-                                value={priceDesc3}
-                                placeholder="Description" />
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.container}>
+                    {/* for Artists */}
+                    <ShowArtist/> 
                     
                 </View>
 
-                <View>
+                <View style={styles.saveContainer}>
                     {/* Wala munang indicator, trying to figure out where to put boolean */}
 
                     {/* { ! uploading ? < ActivityIndicator size="large" color = "#000" /> : */}
