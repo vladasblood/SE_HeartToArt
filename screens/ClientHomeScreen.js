@@ -6,15 +6,19 @@ import {
   TouchableOpacity, 
   ScrollView,
   TextInput } from 'react-native';
-import React from 'react';
+import { React, useState, useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { onSnapshot, collection, query, getDocs, where } from 'firebase/firestore';
+import { auth, db } from '../firebase.js';
 
 import { styles } from '../styles/clientHomeStyle.js';
 
-const ClientHomeScreen = () => {
-  const [text, onChangeText] = React.useState('');
-  const navigation = useNavigation();
+const ClientHomeScreen = ({navigation}) => {
+  const [text, onChangeText] = useState('');
+//   const navigation = useNavigation();
+
+  const [userReq, setUserReq] = useState([]);
 
   const createRequest = () => {
     navigation.navigate('CreateRequest');
@@ -23,6 +27,25 @@ const ClientHomeScreen = () => {
   const openRequestDetails = () => {
     navigation.navigate('Transaction');
   }
+
+  useLayoutEffect(() => {
+
+    const editProfile = query(collection(db, 'request'), where("uID", "==", auth.currentUser.uid));
+        getDocs(editProfile)
+            .then(response => {
+                const das = response.docs.map(doc => ({
+                    artValue: doc.data.artValue,
+                    date: doc.data.date,
+                    desc: doc.data.desc,
+                    photoURL: doc.data.photoURL,
+                    reqStatus: doc.data.reqStatus,
+                    uID: doc.data.uID,
+                    userName: doc.data.userName
+                }))
+        setUserReq(das);
+        }
+    )}
+)
 
   return (
     <View style = {styles.box}>
@@ -55,34 +78,21 @@ const ClientHomeScreen = () => {
             <Text style = {styles.newReqText}>Create New Request</Text>
           </TouchableOpacity>
         </View>
+
+        
         <View style = {styles.reqContainer}>
-          <Text style = {styles.currentTitleText}>Current Requests</Text>
-          
+          <Text style = {styles.currentTitleText}>Current Request</Text>
+
           <TouchableOpacity style = {styles.currentReqBox}>
             <TouchableOpacity style = {styles.reqClickable} onPress={openRequestDetails}>
                 <View style = {styles.artStyle}>
-                    <Text style = {styles.artStyleText}>Template</Text>
-                </View>
-                <View style = {styles.reqTextContainer}>
-                    <Text style = {styles.reqText}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting 
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                        when an unknown printer took a gallery of
+                    <Text style = {styles.artStyleText}>
+                        {userReq.artValue}
                     </Text>
                 </View>
-            </TouchableOpacity>
-          </TouchableOpacity>
-
-          <TouchableOpacity style = {styles.currentReqBox}>
-            <TouchableOpacity style = {styles.reqClickable}>
-                <View style = {styles.artStyle}>
-                    <Text style = {styles.artStyleText}>Template</Text>
-                </View>
                 <View style = {styles.reqTextContainer}>
                     <Text style = {styles.reqText}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting 
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                        when an unknown printer took a gallery of
+                        {userReq.desc}
                     </Text>
                 </View>
             </TouchableOpacity>

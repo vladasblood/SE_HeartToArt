@@ -16,13 +16,9 @@ export default function LoginScreen() {
   const navigation = useNavigation();
   const [userType, setUserType] = useState({});
 
-  useEffect(() => {
-    getData();
-  })
-
   const getData = async () => {
-    const docRef = doc(db, "users", auth.currentUser.uid);
     try {
+    const docRef = doc(db, "users", auth.currentUser.uid);
         const docSnapshot = await getDoc(docRef);
         setUserType(docSnapshot.data().accountType);
     } catch  (error) {
@@ -32,14 +28,18 @@ export default function LoginScreen() {
 
   const verifyEmail = () => {
     getData();
-    if (auth.currentUser.emailVerified) {
-        if (userType == 'client') {
-            navigation.navigate('NavigationBarClient', { screen: 'ClientHome' });
-        } else if (userType == 'artist') {
-            navigation.navigate('NavigationBarArtist', { screen: 'Feed' });
+    try {
+        if (auth.currentUser.emailVerified) {
+            if (userType == 'client') {
+                navigation.navigate('NavigationBarClient', { screen: 'ClientHome' });
+            } else if (userType == 'artist') {
+                navigation.navigate('NavigationBarArtist', { screen: 'Feed' });
+            }
+        } else {
+            alert("Please verify your email.");
         }
-    } else {
-        alert("Please verify your email.");
+    } catch (e) {
+        console.log("hatdoggers");
     }
   }
 
@@ -53,15 +53,10 @@ export default function LoginScreen() {
     if (email !== "" && password !== ""){
       signInWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
-
             verifyEmail();
-            
-          // console.log("UID is", userUID);
-          //Updating UID to the logged in user  
-          // navigation.navigate("UserProfile", {user: userCredential.user.uid});
         })
         .catch(error => {
-          setErrorMessage(error.message)
+          setErrorMessage(error.message);
         })
     } else {
       setErrorMessage("Please Enter Correct Email and Password");
@@ -70,7 +65,7 @@ export default function LoginScreen() {
 
   const forgotPassword = () => {
     // handle
-    
+    navigation.navigate("Reset");
   };
 
   return (

@@ -46,10 +46,10 @@ const ManageAccountScreen = () => {
     const [artOpen, setArtOpen] = useState(false);
     const [artValue, setArtValue] = useState(null);
     const [arts, setArts] = useState([
-        {label: 'Logo', value: 'logo'},
-        {label: 'Poster', value: 'poster'},
-        {label: 'Portrait', value: 'portrait'},
-        {label: 'Landscape', value: 'landscape'},
+        {label: 'Logo', value: 'Logo'},
+        {label: 'Poster', value: 'Poster'},
+        {label: 'Portrait', value: 'Portrait'},
+        {label: 'Landscape', value: 'Landscape'},
     ]);
 
     const [userType, setUserType] = useState("");
@@ -66,7 +66,6 @@ const ManageAccountScreen = () => {
         navigation.navigate('Profile');
     }
 
-
     //Get User Data
     const getData = async () => {
         const docRef = query(collection(db, 'users'), where("email", "==", auth.currentUser.email));
@@ -79,8 +78,7 @@ const ManageAccountScreen = () => {
             })
         })
     }
-    
-    // { oldUser.map(old => (<Text key={old.id}>{old.Username}</Text>)) }
+
     
     //Profile Picture
     const changeProfilePicture = async () => {
@@ -90,7 +88,6 @@ const ManageAccountScreen = () => {
             aspect: [1, 1],
             quality: 0.5,
         })
-
         if (!result.canceled) {
             setImage(result.assets[0].uri);
             // uploadImage(result.assets[0].uri);
@@ -107,7 +104,6 @@ const ManageAccountScreen = () => {
 
         await uploadBytes(storageRef, bytes);
         readImage();
-        //await newPhoto();
         setUploading(true);
     }
 
@@ -139,6 +135,7 @@ const ManageAccountScreen = () => {
         const ref = doc(db, 'users', auth.currentUser.uid, 'bio', auth.currentUser.uid);
         const docRef = await setDoc(ref, {
             textBIO,
+            artValue,
         })
     }
 

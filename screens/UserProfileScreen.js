@@ -66,7 +66,8 @@ export default function UserProfileScreen({ navigation }) {
                     LastName: doc.data().LastName,
                     PhotoURL: doc.data().PhotoURL,
                     Username: doc.data().Username,
-                    id: doc.id
+                    id: doc.id,
+                    userType: doc.data().accountType,
                 }))
                 setOldUser(das);
                 //console.log(oldUser.map.id.data().PhotoURL);
@@ -79,6 +80,7 @@ export default function UserProfileScreen({ navigation }) {
                     .then(response =>{
                         const bio = response.docs.map(doc => ({
                                 textBIO: doc.data().textBIO,
+                                artValue: doc.data().artValue,
                                 id: doc.id
                         }))
                         setUserBIO(bio);
@@ -175,11 +177,13 @@ export default function UserProfileScreen({ navigation }) {
                                     <Text style={styles.emailText}>
                                         {oldUser.map(old => (<Text key = {old.id}>{old.email}</Text>))}
                                     </Text>
-                                    <View style = {styles.artStyle}>
-                                        <Text style = {styles.artStyleText}>
-                                            Template
-                                        </Text>
-                                    </View>
+                                    
+                                        <View style = {styles.artStyle}>
+                                            <Text style = {styles.artStyleText}>
+                                            {userBIO.map(bios => (<Text style = {styles.bioText} key = {bios.id}>{bios.artValue}</Text>))}
+                                            </Text>
+                                        </View>
+                                    
                                     {/*
                                         <Text style={styles.input}>
                                             Email: {oldUser.map(old => (<Text key={old.id}>{old.email}</Text>))}
