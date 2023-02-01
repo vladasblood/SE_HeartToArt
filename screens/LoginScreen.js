@@ -8,7 +8,7 @@ import { auth, db, firestore } from '../firebase';
 
 import logopic from "../assets/Heart.png" 
 import styles from '../styles/Login&Signup-Styles.js'
-import { getDocs, doc, query, collection, getFirestore, getDoc } from 'firebase/firestore';
+import { getDocs, doc, getFirestore, getDoc } from 'firebase/firestore';
 const backImage = require("../assets/BlueBackground.jpg")
 
 export default function LoginScreen() {
@@ -32,10 +32,10 @@ export default function LoginScreen() {
   })
 
   const verifyEmail = () => {
-    getData();
     if (auth.currentUser.emailVerified) {
+        getData();
         if (userType == 'client') {
-            navigation.navigate('NavigationBarClient', { screen: 'Home' });
+            navigation.navigate('NavigationBarClient', { screen: 'ClientHome' });
         } else if (userType == 'artist') {
             navigation.navigate('NavigationBarArtist', { screen: 'Feed' });
         }
@@ -48,7 +48,6 @@ export default function LoginScreen() {
   const [validMessage, setValidMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
 
   const onHandleLogin = async () => {
     if (email !== "" && password !== ""){
@@ -57,19 +56,14 @@ export default function LoginScreen() {
             verifyEmail();
           console.log("UID is", userUID);
           //Updating UID to the logged in user  
-          navigation.navigate("UserProfile", {user: userCredential.user.uid});
+        //   navigation.navigate("UserProfile", {user: userCredential.user.uid});
         })
         .catch(error => {
-          setErrorMessage(error.message)
+          setErrorMessage(error.message);
         })
     } else {
       setErrorMessage("Please Enter Correct Email and Password");
     }
-  };
-
-  const forgotPassword = () => {
-    // handle
-    
   };
 
   return (
@@ -130,7 +124,7 @@ export default function LoginScreen() {
             {/* Forgot Password? */}
             <TouchableOpacity>  
               <Text 
-               onPress={forgotPassword}
+               onPress={() => navigation.navigate('Reset')}
               style = {styles.forgotPassText}>Forgot Password?</Text> 
             </TouchableOpacity>
 

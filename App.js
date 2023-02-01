@@ -10,7 +10,6 @@ import RegisterScreen from './screens/RegisterScreen';
 import HomeScreen from './screens/HomeScreen';
 import ResetPassword from './screens/ResetPassword';
 import UserProfileScreen from './screens/UserProfileScreen';
-// import NotificationScreen from './screens/NotificationScreen';
 import FeedScreen from './screens/FeedScreen';
 import AcceptScreen from './screens/AcceptScreen';
 import InboxScreen from './screens/InboxScreen';
@@ -19,9 +18,6 @@ import ManageAccountScreen from './screens/ManageAccountScreen';
 import CreateRequestScreen from './screens/CreateRequestScreen';
 import TransactionDetailsScreen from './screens/TransactionDetailsScreen';
 
-// import Login from './screens/Login';
-// import Home from './screens/Home';
-// import Signup from './screens/Signup';
 import Chat from './screens/Chat';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';

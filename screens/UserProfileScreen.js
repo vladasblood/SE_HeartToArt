@@ -14,16 +14,30 @@ export default function UserProfileScreen({ navigation }) {
 
     const [userBIO, setUserBIO] = useState([]);
 
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [image, setImage] = useState(false);
-    // const profilePhoto = null;
-
     //LOG-OUT
     const logOut = () => {
         signOut(auth).then(() => {
             navigation.replace("Home");
         });
     };
+
+    const [userType, setUserType] = useState({});
+
+    const getData = async () => {
+        const db = getFirestore();
+        const docRef = doc(db, "users", auth.currentUser.uid);
+        try {
+            const docSnapshot = await getDoc(docRef);
+            setUserType(docSnapshot.data().accountType);
+  
+        } catch  (error) {
+            console.log("Cannot get data.")
+        }
+      }
+    
+      useEffect(() => {
+        getData();
+      })
 
     //useEffect
     useEffect(() => {
@@ -158,6 +172,71 @@ export default function UserProfileScreen({ navigation }) {
         navigation.navigate('ManageAccount');
     }
 
+    function ShowArtist() {
+        if (userType == 'artist') {
+            return (
+            <View style={styles.pricingsOuter}>
+                <View style={styles.pricingsContainer}>
+                    <View style={styles.pricingsLeftContainer}>
+                        <Image 
+                            style = {styles.pricingsPhoto} 
+                            source = {require('../assets/default-icon.png')}    
+                            />
+                    </View>
+                    <View style={styles.pricingsRightContainer}>
+                        <Text style={styles.pricings}>
+                            Pricings
+                        </Text>
+                        <Text style={styles.pricingsDesc}>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting 
+                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                        </Text>
+                    </View>
+                </View>
+                <View style={styles.pricingsContainer}>
+                    <View style={styles.pricingsLeftContainer}>
+                        <Image 
+                            style = {styles.pricingsPhoto} 
+                            source = {require('../assets/default-icon.png')}    
+                            />
+                    </View>
+                    <View style={styles.pricingsRightContainer}>
+                        <Text style={styles.pricings}>
+                            Pricings
+                        </Text>
+                        <Text style={styles.pricingsDesc}>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting 
+                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                        </Text>
+                    </View>
+
+                </View>
+                <View style={styles.pricingsContainer}>
+                    <View style={styles.pricingsLeftContainer}>
+                        <Image 
+                            style = {styles.pricingsPhoto} 
+                            source = {require('../assets/default-icon.png')}    
+                            />
+                    </View>
+                    <View style={styles.pricingsRightContainer}>
+                        <Text style={styles.pricings}>
+                            Pricings
+                        </Text>
+                        <Text style={styles.pricingsDesc}>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting 
+                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                        </Text>
+                    </View>
+
+                </View>
+            </View>
+            )
+        }
+        return null;
+    }
     return (
         <SafeAreaView style={[styles.box]}>
             
@@ -222,68 +301,9 @@ export default function UserProfileScreen({ navigation }) {
                             </View>
                         </View>
                     </View>
-                    <View style={styles.pricingsOuter}>
-                        <View style={styles.pricingsContainer}>
-                            <View style={styles.pricingsLeftContainer}>
-                                <Image 
-                                    style = {styles.pricingsPhoto} 
-                                    source = {require('../assets/default-icon.png')}    
-                                    />
-                            </View>
-                            <View style={styles.pricingsRightContainer}>
-                                <Text style={styles.pricings}>
-                                    Pricings
-                                </Text>
-                                <Text style={styles.pricingsDesc}>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                </Text>
-                            </View>
-                            {/* 
-                                
-                            */}
 
-                        </View>
-                        <View style={styles.pricingsContainer}>
-                            <View style={styles.pricingsLeftContainer}>
-                                <Image 
-                                    style = {styles.pricingsPhoto} 
-                                    source = {require('../assets/default-icon.png')}    
-                                    />
-                            </View>
-                            <View style={styles.pricingsRightContainer}>
-                                <Text style={styles.pricings}>
-                                    Pricings
-                                </Text>
-                                <Text style={styles.pricingsDesc}>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                </Text>
-                            </View>
+                    <ShowArtist/>
 
-                        </View>
-                        <View style={styles.pricingsContainer}>
-                            <View style={styles.pricingsLeftContainer}>
-                                <Image 
-                                    style = {styles.pricingsPhoto} 
-                                    source = {require('../assets/default-icon.png')}    
-                                    />
-                            </View>
-                            <View style={styles.pricingsRightContainer}>
-                                <Text style={styles.pricings}>
-                                    Pricings
-                                </Text>
-                                <Text style={styles.pricingsDesc}>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                </Text>
-                            </View>
-
-                        </View>
-                    </View>
                     <View style={styles.downBar}>
                             
                     </View>

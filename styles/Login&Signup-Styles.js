@@ -47,9 +47,10 @@ export default StyleSheet.create({
       flexGrow: 1,
   },
   loginLogoImage: {
-      maxWidth: '0%',
-      maxHeight: '9%',
-      marginTop: '10%',
+      maxWidth: 50,
+      maxHeight: 50,
+      marginTop: 35,
+      marginBottom: -30,
   },
   headingContainer: {
       color: '#242424',
