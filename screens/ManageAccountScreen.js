@@ -16,7 +16,7 @@ import { styles } from '../styles/manageAccountStyle.js';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
-import { doc, updateDoc, setDoc } from 'firebase/firestore';
+import { doc, updateDoc, setDoc, query, collection, getDocs, where } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL, getFirestore} from "firebase/storage"
 import { auth, db } from '../firebase';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -42,6 +42,7 @@ const ManageAccountScreen = () => {
 
     const user_id = auth.currentUser?.uid;
 
+    //Artist
     const [artOpen, setArtOpen] = useState(false);
     const [artValue, setArtValue] = useState(null);
     const [arts, setArts] = useState([
@@ -51,32 +52,37 @@ const ManageAccountScreen = () => {
         {label: 'Landscape', value: 'landscape'},
     ]);
 
-    const [userType, setUserType] = useState({});
+    const [userType, setUserType] = useState("");
 
-    if (userType=='artist') {
-        setShowArtistDetails(true);
-    }
+    //user
+    const [readUser, setReadUser] = useState([]);
 
-    const getData = async () => {
-      const db = getFirestore();
-      const docRef = doc(db, "users", auth.currentUser.uid);
-      try {
-          const docSnapshot = await getDoc(docRef);
-          setUserType(docSnapshot.data().accountType);
-
-      } catch  (error) {
-          console.log("Cannot get data.")
-      }
-    }
-  
+    //Get Data
     useEffect(() => {
-      getData();
+        getData();
     })
 
     const backToAccount = () => {
-      navigation.navigate('Profile');
+        navigation.navigate('Profile');
     }
 
+
+    //Get User Data
+    const getData = async () => {
+        const docRef = query(collection(db, 'users'), where("email", "==", auth.currentUser.email));
+
+        getDocs(docRef)
+        .then(snapshot => {
+            snapshot.forEach(xdc => {
+                var data = xdc.data();
+                setUserType(data.accountType); // store userType
+            })
+        })
+    }
+    
+    // { oldUser.map(old => (<Text key={old.id}>{old.Username}</Text>)) }
+    
+    //Profile Picture
     const changeProfilePicture = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -89,9 +95,9 @@ const ManageAccountScreen = () => {
             setImage(result.assets[0].uri);
             // uploadImage(result.assets[0].uri);
         }
-
     }
 
+    //Upload Image
     const uploadImage = async () => {
         const storage = getStorage();
         const storageRef = ref(storage, `userImages/${user_id}_DP`);
@@ -99,17 +105,14 @@ const ManageAccountScreen = () => {
         const img = await fetch(image);
         const bytes = await img.blob();
 
-        //const docRef = (await db.collection('users').doc('userUID').get()).data().photoURL
-
         await uploadBytes(storageRef, bytes);
         readImage();
         //await newPhoto();
         setUploading(true);
     }
 
+    //Read Image Data
     const readImage = () => {
-        //Read Image Data
-
         const storage = getStorage();
         const storageRef = ref(storage, `userImages/${user_id}_DP`);
         getDownloadURL(storageRef)
@@ -117,11 +120,10 @@ const ManageAccountScreen = () => {
                 return setUpdatedImage(url);
             })
             .catch((e) => console.log('downloadURL of image error => ', e));
-        
     }
 
+    //Update User Data
     const newPhoto = async () => {
-
         try {
             const bigData = doc(db, "users", auth.currentUser.uid);
             await updateDoc(bigData, {
@@ -149,6 +151,7 @@ const ManageAccountScreen = () => {
         setUploading(false); 
     }
 
+    //Show Artist == Artist
     function ShowArtist() {
         if (userType == 'artist') {
             return (

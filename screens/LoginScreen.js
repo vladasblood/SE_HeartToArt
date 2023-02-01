@@ -16,8 +16,11 @@ export default function LoginScreen() {
   const navigation = useNavigation();
   const [userType, setUserType] = useState({});
 
+  useEffect(() => {
+    getData();
+  })
+
   const getData = async () => {
-    const db = getFirestore();
     const docRef = doc(db, "users", auth.currentUser.uid);
     try {
         const docSnapshot = await getDoc(docRef);
@@ -27,15 +30,11 @@ export default function LoginScreen() {
     }
   }
 
-  useEffect(() => {
-    getData();
-  })
-
   const verifyEmail = () => {
     getData();
     if (auth.currentUser.emailVerified) {
         if (userType == 'client') {
-            navigation.navigate('NavigationBarClient', { screen: 'Home' });
+            navigation.navigate('NavigationBarClient', { screen: 'ClientHome' });
         } else if (userType == 'artist') {
             navigation.navigate('NavigationBarArtist', { screen: 'Feed' });
         }
@@ -54,10 +53,12 @@ export default function LoginScreen() {
     if (email !== "" && password !== ""){
       signInWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
+
             verifyEmail();
-          console.log("UID is", userUID);
+            
+          // console.log("UID is", userUID);
           //Updating UID to the logged in user  
-          navigation.navigate("UserProfile", {user: userCredential.user.uid});
+          // navigation.navigate("UserProfile", {user: userCredential.user.uid});
         })
         .catch(error => {
           setErrorMessage(error.message)

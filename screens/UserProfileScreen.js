@@ -133,27 +133,7 @@ export default function UserProfileScreen({ navigation }) {
     // let showUserContent = () => {
 
     // };
-    
-    const showContent = () => {
-        return (
-            <View style={styles.container}>
-                <Text>Welcome</Text>
-                {/* {isLoading ? <ActivityIndicator size = "large"/> : showUserContent()} */}
-            </View>
-        );
-    };
-
-    //VERIFY EMAIL BEFORE MAIN CONTENT
-    const showSendVerificationEmail = () => {
-        return (
-            <View>
-                <Text>Please verify your email to use the app</Text>
-                <Button title="Send Verification Email"
-                    onPress={() => sendEmailVerification(auth.currentUser)} />
-            </View>
-        )
-    };
-
+   
     const manageAccount = () => {
         navigation.navigate('ManageAccount');
     }
