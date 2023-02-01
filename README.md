@@ -52,4 +52,5 @@ expo start # you can open iOS, Android, or web from here, or run them directly w
 ```
 #
 
-vladibeer
+vladibeer2
+
