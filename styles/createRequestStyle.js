@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
         paddingVertical: 14,
         marginTop: 15,
         backgroundColor: '#053dc4',
+        
     },
 
     requestButtonText: {

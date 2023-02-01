@@ -11,7 +11,7 @@ const FeedScreen = ({navigation}) => {
 
   const [data, setData] = useState([]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const ref = collection(db, "requests");
 
     onSnapshot(ref, (categories) => 

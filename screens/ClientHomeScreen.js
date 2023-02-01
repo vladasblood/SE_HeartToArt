@@ -54,7 +54,7 @@ const ClientHomeScreen = ({navigation}) => {
       </View>
 
       <View style = {styles.outerSearch}>
-        <View style = {styles.searchBar}>
+        {/* <View style = {styles.searchBar}>
           <TextInput
             style={styles.input}
             onChangeText={onChangeText}
@@ -67,10 +67,10 @@ const ClientHomeScreen = ({navigation}) => {
               color={'#777777'} 
               size={25} />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
       
-      <ScrollView> 
+      
         <View style = {styles.reqContainer}>
           <TouchableOpacity 
             style = {styles.reqBox} 
@@ -78,8 +78,8 @@ const ClientHomeScreen = ({navigation}) => {
             <Text style = {styles.newReqText}>Create New Request</Text>
           </TouchableOpacity>
         </View>
-
-        
+    
+{/*         
         <View style = {styles.reqContainer}>
           <Text style = {styles.currentTitleText}>Current Request</Text>
 
@@ -98,8 +98,8 @@ const ClientHomeScreen = ({navigation}) => {
             </TouchableOpacity>
           </TouchableOpacity>
 
-        </View>
-      </ScrollView>
+        </View> */}
+      
 
     </View>
   );

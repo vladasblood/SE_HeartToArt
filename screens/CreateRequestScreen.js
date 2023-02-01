@@ -175,9 +175,9 @@ const CreateRequestScreen = () => {
               </View>
 
               <View>
-                  <View style = {styles.acceptContainer} >
+                  <View style = {styles.acceptContainer}>
                     <Text style = {styles.acceptText}>
-                      Are you sure you want to create this request?
+                        Are you sure you want to create this request?
                     </Text>
                     <TouchableOpacity style = {styles.requestButton} onPress = {confirmRequest}>
                       <Text style = {styles.requestButtonText}>Confirm</Text>
