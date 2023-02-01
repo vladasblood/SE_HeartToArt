@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
   outerSearch: {
     borderBottomColor: '#777777', 
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     backgroundColor: '#D9D9D9',
   },
 
@@ -36,10 +36,13 @@ const styles = StyleSheet.create({
   },
 
   reqContainer: {
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     borderBottomColor: '#C1C1C1',
     paddingHorizontal: 25,
     paddingVertical: 20,
+    marginTop: 300,
+    alignSelf: 'center',
+    // textAlignVertical: 'center'
   },
 
   reqBox: {
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
     // borderTopWidth:1,
     // marginTop: 20,
     flexDirection: 'column',
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     borderColor: '#C1C1C1'
   },
 
