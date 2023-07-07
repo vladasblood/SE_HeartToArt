@@ -1,5 +1,5 @@
-# SE_HeartToArt
-Original SE Project
+# Software Engineering 1: HeartToArt
+Original Software Engineering 1 Project
 
 # MUST-HAVE
 ## Android Studio
